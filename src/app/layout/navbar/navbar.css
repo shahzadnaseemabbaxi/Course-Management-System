@@ -1,0 +1,10 @@
+.navbar {
+    height: 70px;
+    background-color: white;
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+button.btn.dropdown-toggle {
+    margin-left: 50rem;
+
+}

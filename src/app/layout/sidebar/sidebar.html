@@ -1,0 +1,25 @@
+<div class="sidebar">
+  <h2 routerLink="/">Course Management System</h2>
+
+  <a routerLink="/" 
+     routerLinkActive="active" 
+     [routerLinkActiveOptions]="{ exact: true }">
+    <i class="fa-solid fa-gauge"></i> Dashboard
+  </a>
+
+  <a routerLink="/student" routerLinkActive="active">
+    <i class="fa-solid fa-user-graduate"></i> Students
+  </a>
+
+  <a routerLink="/courses" routerLinkActive="active">
+    <i class="fa-solid fa-book-open"></i> Courses
+  </a>
+
+  <a routerLink="/enrollment" routerLinkActive="active">
+    <i class="fa-solid fa-clipboard-list"></i> Enrollments
+  </a>
+
+  <a routerLink="/fees" routerLinkActive="active">
+    <i class="fa-solid fa-money-bill-wave"></i> Fees
+  </a>
+</div>

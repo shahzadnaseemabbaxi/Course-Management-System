@@ -1,0 +1,46 @@
+.sidebar {
+    width: 250px;
+    height: 370vh;
+    background-color: #1e293b;
+    color: #ffffff;
+    padding: 24px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    cursor: pointer;
+    margin-bottom: 2.5rem;
+}
+
+.sidebar a {
+    margin-top: 30px;
+    display: block;
+    color: #cbd5e1;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.3rem;
+    padding: 10px;
+    border-radius: 10px;
+    transition: .3s ease-in-out;
+    border-left: 4px solid transparent;   /* ✅ naya */
+}
+
+/* Hover Effect */
+.sidebar a:hover {
+    background-color: #1e3a8a;
+    color: #ffffff;
+}
+
+/* ✅ Active / Selected Link */
+.sidebar a.active {
+    background-color: #16a34a;          /* Green - clearly visible */
+    color: #ffffff;
+    font-weight: 600;
+    border-left: 4px solid #4ade80;
+    box-shadow: 0 0 10px rgba(22, 163, 74, 0.4);  /* halka glow */
+}
+
+/* Active link ke icon ka color */
+.sidebar a.active i {
+    color: #ffffff;
+}

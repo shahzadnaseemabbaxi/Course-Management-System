@@ -1,0 +1,21 @@
+<div class="dashboard">
+    <div class="card">
+        <h4>Total Students</h4>
+        <p>{{totalStudents()}}</p>
+    </div>
+
+    <div class="card">
+        <h4>Total Courses</h4>
+        <p>{{totalCourses()}}</p>
+    </div>
+    <div class="card">
+        <h4>Total Enrollments</h4>
+        <p>{{totalEnrollments()}}</p>
+    </div>
+    <div class="card">
+        <h4>Total Fees Collected</h4>
+        <p>{{totalFee()}}</p>
+    </div>
+</div>
+<!-- Dashboard par form nahi dikhega -->
+<app-student [showForm]="false"></app-student>
