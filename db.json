@@ -10,7 +10,7 @@
       "id": "1"
     },
     {
-      "id": "1",
+      "id": "2",
       "name": "Ammad Naseem Abbasi",
       "father_name": "Muhammad Naseem",
       "email": "abbasiammad562@gmail.com",
@@ -19,13 +19,47 @@
       "department": "Ai engineer"
     },
     {
-      "id": "1",
+      "id": "3",
       "name": "Mahaz Naseem Abbasi",
       "father_name": "Muhammad Naseem",
       "email": "abbasimahaz562@gmail.com",
       "phone": "03480526933",
       "address": "Abbottabad",
       "department": "Computer Science"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "course_name": "Angular",
+      "course_description": "Frontend framework",
+      "course_duration": "3 months",
+      "instructor": "Shahzad",
+      "available_seats": "20"
+    },
+    {
+      "course_name": "React",
+      "course_description": "Frontend framework",
+      "course_duration": "1.5 months",
+      "instructor": "Ammad",
+      "available_seats": "15",
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "course_name": "java script",
+      "course_description": "backend ",
+      "course_duration": "2.5 months",
+      "instructor": "mahaz",
+      "available_seats": "20"
+    },
+    {
+      "course_name": "HTML & CSS",
+      "course_description": "Structure & Styling",
+      "course_duration": "1 month",
+      "instructor": "Ayaan Abbasi",
+      "available_seats": "10",
+      "id": "GZBZ1-CqhMo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

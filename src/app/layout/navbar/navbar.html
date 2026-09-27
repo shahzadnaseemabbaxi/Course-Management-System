@@ -1,11 +1,15 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+      <!-- Search form (left side) -->
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <div class="dropdown">
+      
+      <!-- Admin dropdown (right side) -->
+      <div class="dropdown ms-auto">
         <button
           class="btn dropdown-toggle"
           type="button"
@@ -14,12 +18,13 @@
         >
           <i class="fa-solid fa-user me-2"></i>Admin
         </button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="#">Action</a></li>
           <li><a class="dropdown-item" href="#">Another action</a></li>
           <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
       </div>
+      
     </div>
   </div>
 </nav>

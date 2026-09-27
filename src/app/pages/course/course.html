@@ -1,0 +1,43 @@
+<h2>Courses</h2>
+@if (showForm()) {
+
+<form [formGroup]="courseForm" (ngSubmit)="saveCourse()">
+  <input placeholder="Course Name" formControlName="course_name" />
+  <input placeholder="Course Description" formControlName="course_description" />
+  <input placeholder="Course Duration" formControlName="course_duration" />
+  <input placeholder="Instructor" formControlName="instructor" />
+  <input placeholder="Available Seats" formControlName="available_seats" />
+
+  <button type="submit">
+    {{ selectedCourseId() === null ? 'Add Course' : 'Update Course' }}
+  </button>
+
+  @if (selectedCourseId() !== null) {
+    <button type="button" (click)="cancelEdit()">Cancel</button>
+  }
+</form>
+}
+<table>
+  <tr>
+    <th>Course Name</th>
+    <th>Course Description</th>
+    <th>Course Duration</th>
+    <th>Available Seats</th>
+    <th>Instructor</th>
+    <th>Actions</th>
+  </tr>
+
+  @for (course of courses(); track course.id) {
+    <tr>
+      <td>{{ course.course_name }}</td>
+      <td>{{ course.course_description }}</td>
+      <td>{{ course.course_duration }}</td>
+      <td>{{ course.available_seats }}</td>
+      <td>{{ course.instructor }}</td>
+      <td>
+        <button (click)="editCourse(course)">Edit</button>
+        <button class="delete" (click)="deleteCourse(course.id)">Delete</button>
+      </td>
+    </tr>
+  }
+</table>
