@@ -16,13 +16,13 @@
 .enrollments-page.dark .page-header h2 { color: #ffffff; }
 
 .add-new-btn {
-  background: #465fff; color: #fff; border: none;
+  background: #059669; color: #fff; border: none;
   padding: 10px 20px; border-radius: 8px;
   font-size: 14px; font-weight: 600; cursor: pointer;
   box-shadow: 0 4px 12px rgba(70, 95, 255, 0.3);
   transition: 0.2s;
 }
-.add-new-btn:hover { background: #3548d4; transform: translateY(-1px); }
+.add-new-btn:hover { background: #059669; transform: translateY(-1px); }
 
 .table-wrapper {
   background: #ffffff; border-radius: 12px;
@@ -79,7 +79,7 @@ tbody tr:hover td { background: #f9fafb; }
 .empty-content h3 { font-size: 20px; font-weight: 600; margin: 0; }
 .empty-content p { font-size: 14px; color: #6b7280; margin: 0 0 16px; }
 .add-first-btn {
-  background: #465fff; color: #fff; border: none;
+  background: #059669; color: #fff; border: none;
   padding: 10px 24px; border-radius: 8px;
   font-weight: 600; cursor: pointer;
 }
@@ -177,8 +177,8 @@ tbody tr:hover td { background: #f9fafb; }
   padding-top: 16px; border-top: 1px solid #e5e7eb;
 }
 .enrollments-page.dark .modal-actions { border-top-color: #2a2a3a; }
-.save-btn { background: #465fff; color: #fff; border: none; padding: 10px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; }
-.save-btn:hover { background: #3548d4; }
+.save-btn { background: #059669; color: #fff; border: none; padding: 10px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.save-btn:hover { background: #047857; }
 .cancel-btn { background: #6b7280; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; }
 .cancel-btn:hover { background: #4b5563; }
 
