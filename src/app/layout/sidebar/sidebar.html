@@ -1,25 +1,20 @@
-<div class="sidebar">
-  <h2 routerLink="/">Course Management System</h2>
+<aside class="sidebar" [class.dark]="themeService.isDarkMode()">
 
-  <a routerLink="/" 
-     routerLinkActive="active" 
-     [routerLinkActiveOptions]="{ exact: true }">
-    <i class="fa-solid fa-gauge"></i> Dashboard
-  </a>
+  <div class="sidebar-header">
+    <h1>Course<br />Management<br />System</h1>
+  </div>
 
-  <a routerLink="/student" routerLinkActive="active">
-    <i class="fa-solid fa-user-graduate"></i> Students
-  </a>
+  <nav class="sidebar-nav">
+    @for (item of menuItems; track item.name) {
+      <a
+        class="nav-item"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+      >
+        <span class="nav-icon">{{ item.icon }}</span>
+        <span class="nav-text">{{ item.name }}</span>
+      </a>
+    }
+  </nav>
 
-  <a routerLink="/courses" routerLinkActive="active">
-    <i class="fa-solid fa-book-open"></i> Courses
-  </a>
-
-  <a routerLink="/enrollment" routerLinkActive="active">
-    <i class="fa-solid fa-clipboard-list"></i> Enrollments
-  </a>
-
-  <a routerLink="/fees" routerLinkActive="active">
-    <i class="fa-solid fa-money-bill-wave"></i> Fees
-  </a>
-</div>
+</aside>

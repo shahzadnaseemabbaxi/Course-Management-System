@@ -1,46 +1,103 @@
 .sidebar {
-    width: 250px;
-    height: 370vh;
-    background-color: #1e293b;
-    color: #ffffff;
-    padding: 24px;
-    position: fixed;
+  width: 260px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 24px 0;
+  transition: background 0.3s, border-color 0.3s;
+  min-height: 100%;
+  flex-shrink: 0;
 }
 
-.sidebar h2 {
-    cursor: pointer;
-    margin-bottom: 2.5rem;
+.sidebar.dark {
+  background: #14141f;
+  border-right-color: #2a2a3a;
 }
 
-.sidebar a {
-    margin-top: 25px;
-    display: block;
-    color: #cbd5e1;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 1.3rem;
-    padding: 10px;
-    border-radius: 10px;
-    transition: .3s ease-in-out;
-    border-left: 4px solid transparent;   /* ✅ naya */
+.sidebar-header {
+  padding: 0 24px 24px;
 }
 
-/* Hover Effect */
-.sidebar a:hover {
-    background-color: #1e3a8a;
-    color: #ffffff;
+.sidebar-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a2e;
+  margin: 0;
 }
 
-/* ✅ Active / Selected Link */
-.sidebar a.active {
-    background-color: #16a34a;          /* Green - clearly visible */
-    color: #ffffff;
-    font-weight: 600;
-    border-left: 4px solid #4ade80;
-    box-shadow: 0 0 10px rgba(22, 163, 74, 0.4);  /* halka glow */
+.sidebar.dark .sidebar-header h1 {
+  color: #ffffff;
 }
 
-/* Active link ke icon ka color */
-.sidebar a.active i {
-    color: #ffffff;
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.2s;
+  text-decoration: none;
+}
+
+.sidebar.dark .nav-item {
+  color: #9ca3af;
+}
+
+/* Hover — light mode */
+.nav-item:hover {
+  background: #f3f4f6;
+  color: #10b981;
+}
+
+/* Hover — dark mode */
+.sidebar.dark .nav-item:hover {
+  background: #1f1f2e;
+  color: #10b981;
+}
+
+/* =========================
+   Active — Clean & Clear
+========================= */
+.nav-item.active {
+  background: #10b981;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+/* Active — icon ko white karo */
+.nav-item.active .nav-icon {
+  filter: brightness(0) invert(1);      /* emoji ko white banata hai */
+  color: #ffffff;
+}
+
+/* Active — text ko extra white + bold */
+.nav-item.active .nav-text {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Icon base */
+.nav-icon {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+/* Text base */
+.nav-text {
+  transition: 0.2s;
 }

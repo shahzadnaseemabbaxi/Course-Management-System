@@ -1,10 +1,71 @@
 .navbar {
-    height: 70px;
-    background-color: white;
-    padding: 20px;
-    border-bottom: 1px solid #e5e7eb;
+  height: 70px;
+  background-color: white;
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.3s, border-color 0.3s;
 }
-button.btn.dropdown-toggle {
-    margin-left: 50rem;
 
+.navbar.dark {
+  background-color: #0f0f1a;
+  border-bottom-color: #2a2a3a;
+}
+
+.navbar.dark .form-control {
+  background: #14141f;
+  color: #e4e4e7;
+  border-color: #2a2a3a;
+}
+
+.navbar.dark .form-control::placeholder {
+  color: #6b7280;
+}
+
+.navbar.dark .btn-outline-success {
+  color: #6ee7b7;
+  border-color: #10b981;
+}
+
+.navbar.dark .btn.dropdown-toggle {
+  color: #e4e4e7;
+  background: transparent;
+  border: none;
+}
+
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.navbar.dark .theme-toggle {
+  border-color: #2a2a3a;
+}
+
+.theme-toggle:hover {
+  background: #f3f4f6;
+}
+
+.navbar.dark .theme-toggle:hover {
+  background: #1f1f2e;
 }

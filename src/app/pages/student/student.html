@@ -1,48 +1,186 @@
-<h2>Student List</h2>
+<div class="students-page" [class.dark]="themeService.isDarkMode()">
 
-<!-- Form sirf tab dikhega jab showForm true ho -->
-@if (showForm()) {
-  <form [formGroup]="studentForm" (ngSubmit)="saveStudent()">
-    <input placeholder="Name" formControlName="name">
-    <input placeholder="Father_name" formControlName="father_name">
-    <input placeholder="Email" formControlName="email">
-    <input placeholder="Phone" formControlName="phone">
-    <input placeholder="Address" formControlName="address">
-    <input placeholder="Department" formControlName="department">
-    <button type="submit">
-      {{selectedStudentId() === null ? 'Add Student' : 'Update Student' }}
+  <!-- ✅ Toast Notification -->
+  @if (showToast()) {
+    <div class="toast-popup" [class.success]="toastType() === 'success'">
+      <span class="toast-text">{{ toastMessage() }}</span>
+      <button class="toast-close" (click)="showToast.set(false)">✕</button>
+    </div>
+  }
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h2>Student List</h2>
+
+    <button class="add-new-btn" (click)="openModal()">
+      + Add Student
+    </button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Father Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Department</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (student of students(); track student.id) {
+          <tr>
+            <td class="name-cell">{{ student.name }}</td>
+            <td>{{ student.father_name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.phone }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.department }}</td>
+            <td>
+              <div class="actions">
+                <button class="edit-btn" (click)="editStudent(student)">Edit</button>
+                <button class="delete-btn" (click)="deleteStudent(student.id)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        }
+
+        @if (students().length === 0) {
+          <tr>
+            <td colspan="7" class="empty-state">
+              <div class="empty-content">
+                <div class="empty-icon">👨‍🎓</div>
+                <h3>No Students Yet</h3>
+                <p>Click the button below to add your first student</p>
+                <button class="add-first-btn" (click)="openModal()">
+                  + Add First Student
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ✅ Modal Popup -->
+  @if (showModal()) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal-box" (click)="$event.stopPropagation()">
+
+        <div class="modal-header">
+          <h3>{{ selectedStudentId() === null ? 'Add New Student' : 'Update Student' }}</h3>
+          <button class="modal-close" (click)="closeModal()">✕</button>
+        </div>
+
+        <form [formGroup]="studentForm" (ngSubmit)="saveStudent()" class="modal-form">
+
+          <div class="form-group">
+            <label>Name *</label>
+            <input
+              placeholder="Enter student name"
+              formControlName="name"
+              [class.error]="isInvalid('name')"
+            />
+            @if (isInvalid('name')) {
+              <span class="error-msg">⚠ Name is required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Father Name *</label>
+            <input
+              placeholder="Enter father name"
+              formControlName="father_name"
+              [class.error]="isInvalid('father_name')"
+            />
+            @if (isInvalid('father_name')) {
+              <span class="error-msg">⚠ Father name is required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Email *</label>
+            <input
+              type="email"
+              placeholder="Enter email"
+              formControlName="email"
+              [class.error]="isInvalid('email')"
+            />
+            @if (isInvalid('email')) {
+              <span class="error-msg">⚠ Email is required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Phone *</label>
+            <input
+              placeholder="Enter phone"
+              formControlName="phone"
+              [class.error]="isInvalid('phone')"
+            />
+            @if (isInvalid('phone')) {
+              <span class="error-msg">⚠ Phone is required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Address *</label>
+            <input
+              placeholder="Enter address"
+              formControlName="address"
+              [class.error]="isInvalid('address')"
+            />
+            @if (isInvalid('address')) {
+              <span class="error-msg">⚠ Address is required</span>
+            }
+          </div>
+
+          <div class="form-group">
+  <label>Department *</label>
+
+  <div class="dept-dropdown">
+    <button
+      type="button"
+      class="dept-btn"
+      (click)="toggleDeptDropdown()"
+      [class.active]="showDeptDropdown()"
+      [class.error]="isInvalid('department')"
+    >
+      <span>{{ selectedDeptLabel() || 'Select Department' }}</span>
+      <span class="arrow">▼</span>
     </button>
 
-    @if (selectedStudentId() !== null) {
-      <button type="button" class="cancel" (click)="cancelEdit()">Cancel</button>
+    @if (showDeptDropdown()) {
+      <div class="dept-menu">
+        @for (dept of departmentOptions; track dept) {
+          <div class="dept-item" (click)="selectDept(dept)">
+            {{ dept }}
+          </div>
+        }
+      </div>
     }
-  </form>
-}
+  </div>
 
-<!-- Table hamesha nazar aayega -->
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Father Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Address</th>
-    <th>Department</th>
-    <th>Actions</th>
-  </tr>
-
-  @for (student of students(); track student.id) {
-    <tr>
-      <td>{{ student.name }}</td>
-      <td>{{ student.father_name}}</td>
-      <td>{{ student.email }}</td>
-      <td>{{ student.phone}}</td>
-      <td>{{ student.address}}</td>
-      <td>{{ student.department }}</td>
-      <td>
-        <button (click)="editStudent(student)">Edit</button>
-        <button class="delete" (click)="deleteStudent(student.id)">Delete</button>
-      </td>
-    </tr>
+  @if (isInvalid('department')) {
+    <span class="error-msg">⚠ Department is required</span>
   }
-</table>
+</div>
+
+          <div class="modal-actions">
+            <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="save-btn">
+              {{ selectedStudentId() === null ? 'Add Student' : 'Update Student' }}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  }
+
+</div>

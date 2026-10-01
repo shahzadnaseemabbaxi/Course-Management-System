@@ -1,21 +1,23 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar" [class.dark]="themeService.isDarkMode()">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
-      <!-- Search form (left side) -->
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      
-      <!-- Admin dropdown (right side) -->
-      <div class="dropdown ms-auto">
-        <button
-          class="btn dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
+
+    <!-- Search form (left side) -->
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <!-- Right side: Theme toggle + Admin dropdown -->
+    <div class="right-side">
+
+      <!-- 🌙 / ☀️ Toggle Button -->
+      <button class="theme-toggle" (click)="toggleTheme()" title="Toggle Theme">
+        {{ themeService.isDarkMode() ? '☀️' : '🌙' }}
+      </button>
+
+      <!-- Admin dropdown -->
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-user me-2"></i>Admin
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
@@ -24,7 +26,7 @@
           <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
       </div>
-      
+
     </div>
   </div>
 </nav>

@@ -1,1 +1,157 @@
-<p>enrollment works!</p>
+<div class="enrollments-page" [class.dark]="themeService.isDarkMode()">
+
+  @if (showToast()) {
+    <div class="toast-popup" [class.success]="toastType() === 'success'">
+      <span class="toast-text">{{ toastMessage() }}</span>
+      <button class="toast-close" (click)="showToast.set(false)">✕</button>
+    </div>
+  }
+
+  <div class="page-header">
+    <h2>Enrollments</h2>
+    <button class="add-new-btn" (click)="openModal()">+ New Enrollment</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Enrollment ID</th>
+          <th>Student</th>
+          <th>Course</th>
+          <th>Fee</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of enrollments(); track e.id) {
+          <tr>
+            <td>E{{ e.id }}</td>
+            <td class="name-cell">{{ e.student_name }}</td>
+            <td>{{ e.course_name }}</td>
+            <td>Rs. {{ e.course_fee }}</td>
+            <td>{{ e.enroll_date }}</td>
+            <td>
+              <span class="status-badge" [class.active]="e.status === 'Active'">
+                {{ e.status }}
+              </span>
+            </td>
+            <td>
+              <div class="actions">
+                <button class="edit-btn" (click)="editEnrollment(e)">Edit</button>
+                <button class="delete-btn" (click)="deleteEnrollment(e.id)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        }
+
+        @if (enrollments().length === 0) {
+          <tr>
+            <td colspan="7" class="empty-state">
+              <div class="empty-content">
+                <div class="empty-icon">📝</div>
+                <h3>No Enrollments Yet</h3>
+                <p>Enroll a student to a course</p>
+                <button class="add-first-btn" (click)="openModal()">+ New Enrollment</button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (showModal()) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal-box" (click)="$event.stopPropagation()">
+
+        <div class="modal-header">
+          <h3>{{ selectedEnrollmentId() === null ? 'New Enrollment' : 'Update Enrollment' }}</h3>
+          <button class="modal-close" (click)="closeModal()">✕</button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="saveEnrollment()" class="modal-form">
+
+          <!-- Student -->
+          <div class="form-group">
+            <label>Student *</label>
+            <div class="custom-dropdown">
+              <button type="button" class="dropdown-btn"
+                (click)="toggleStudentDropdown()"
+                [class.active]="showStudentDropdown()"
+                [class.error]="isInvalid('student_id')">
+                <span>{{ selectedStudentLabel() || 'Select Student' }}</span>
+                <span class="arrow">▼</span>
+              </button>
+              @if (showStudentDropdown()) {
+                <div class="dropdown-menu">
+                  @for (s of students(); track s.id) {
+                    <div class="dropdown-item" (click)="selectStudent(s)">{{ s.name }}</div>
+                  }
+                </div>
+              }
+            </div>
+            @if (isInvalid('student_id')) {
+              <span class="error-msg">⚠ Student required</span>
+            }
+          </div>
+
+          <!-- Course -->
+          <div class="form-group">
+            <label>Course *</label>
+            <div class="custom-dropdown">
+              <button type="button" class="dropdown-btn"
+                (click)="toggleCourseDropdown()"
+                [class.active]="showCourseDropdown()"
+                [class.error]="isInvalid('course_id')">
+                <span>{{ selectedCourseLabel() || 'Select Course' }}</span>
+                <span class="arrow">▼</span>
+              </button>
+              @if (showCourseDropdown()) {
+                <div class="dropdown-menu">
+                  @for (c of courses(); track c.id) {
+                    <div class="dropdown-item" (click)="selectCourse(c)">{{ c.course_name }}</div>
+                  }
+                </div>
+              }
+            </div>
+            @if (isInvalid('course_id')) {
+              <span class="error-msg">⚠ Course required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Course Fee</label>
+            <input formControlName="course_fee" readonly />
+          </div>
+
+          <div class="form-group">
+            <label>Enrollment Date *</label>
+            <input type="date" formControlName="enroll_date"
+              [class.error]="isInvalid('enroll_date')" />
+          </div>
+
+          <div class="form-group full-width">
+            <label>Status *</label>
+            <select formControlName="status" class="status-select">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="save-btn">
+              {{ selectedEnrollmentId() === null ? 'Enroll' : 'Update' }}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  }
+
+</div>

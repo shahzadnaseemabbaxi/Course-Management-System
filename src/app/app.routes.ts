@@ -4,21 +4,14 @@ import { Enrollment } from './pages/enrollment/enrollment';
 import { Fees } from './pages/fees/fees';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Course } from './pages/course/course';
+import { Setting } from './pages/setting/setting';
 
 export const routes: Routes = [
-    {
-        path: "", component: Dashboard
-    },   
-    {
-        path: "student", component: Student
-    },   
-    {
-        path: "courses", component: Course
-    },   
-    {
-        path: "enrollment", component: Enrollment
-    },   
-    {
-        path: "fees", component: Fees
-    },   
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'dashboard',   component: Dashboard },
+  { path: 'students',    component: Student },
+  { path: 'courses',     component: Course },
+  { path: 'enrollments', component: Enrollment },
+  { path: 'fees',        component: Fees },
+  { path: 'settings',    component: Setting}
 ];

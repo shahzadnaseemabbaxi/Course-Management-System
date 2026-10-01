@@ -1,10 +1,24 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ThemeService } from '../../services/theme';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  imports: [RouterModule],
   selector: 'app-sidebar',
+  standalone: true,
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   styleUrl: './sidebar.css',
   templateUrl: './sidebar.html',
 })
-export class Sidebar {}
+export class Sidebar {
+  constructor(public themeService: ThemeService) {}
+
+  menuItems = [
+    { name: 'Dashboard',   icon: '📊', route: '/dashboard' },
+    { name: 'Student',    icon: '👨‍🎓', route: '/students' },
+    { name: 'Courses',     icon: '📚', route: '/courses' },
+    { name: 'Enrollment', icon: '📝', route: '/enrollments' },
+    { name: 'Fees',        icon: '💰', route: '/fees' },
+    { name: 'Settings',    icon: '⚙️', route: '/settings' }
+  ];
+}

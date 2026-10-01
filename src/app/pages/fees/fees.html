@@ -1,1 +1,171 @@
-<p>fees works!</p>
+<div class="fees-page" [class.dark]="themeService.isDarkMode()">
+
+  @if (showToast()) {
+    <div class="toast-popup" [class.success]="toastType() === 'success'">
+      <span class="toast-text">{{ toastMessage() }}</span>
+      <button class="toast-close" (click)="showToast.set(false)">✕</button>
+    </div>
+  }
+
+  <div class="page-header">
+    <h2>Fees & Payments</h2>
+    <button class="add-new-btn" (click)="openModal()">+ Submit Payment</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Payment ID</th>
+          <th>Student</th>
+          <th>Course</th>
+          <th>Paid Amount</th>
+          <th>Date</th>
+          <th>Method</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of payments(); track p.id) {
+          <tr>
+            <td>P{{ p.id }}</td>
+            <td class="name-cell">{{ p.student_name || p.enrollment_id }}</td>
+            <td>{{ p.course_name || '-' }}</td>
+            <td>Rs. {{ p.paid_amount }}</td>
+            <td>{{ p.payment_date }}</td>
+            <td>{{ p.payment_method }}</td>
+            <td>
+              <span class="status-badge"
+                [class.paid]="getStatus(p.paid_amount, p.total_fee) === 'Paid'"
+                [class.partial]="getStatus(p.paid_amount, p.total_fee) === 'Partial'"
+                [class.unpaid]="getStatus(p.paid_amount, p.total_fee) === 'Unpaid'">
+                {{ getStatus(p.paid_amount, p.total_fee) }}
+              </span>
+            </td>
+            <td>
+              <div class="actions">
+                <button class="edit-btn" (click)="editPayment(p)">Edit</button>
+                <button class="delete-btn" (click)="deletePayment(p.id)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        }
+
+        @if (payments().length === 0) {
+          <tr>
+            <td colspan="8" class="empty-state">
+              <div class="empty-content">
+                <div class="empty-icon">💰</div>
+                <h3>No Payments Yet</h3>
+                <p>Submit a payment to see it here</p>
+                <button class="add-first-btn" (click)="openModal()">
+                  + Submit Payment
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (showModal()) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal-box" (click)="$event.stopPropagation()">
+
+        <div class="modal-header">
+          <h3>{{ selectedPaymentId() === null ? 'Submit Fee Payment' : 'Update Payment' }}</h3>
+          <button class="modal-close" (click)="closeModal()">✕</button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="savePayment()" class="modal-form">
+
+          <!-- Enrollment Dropdown -->
+          <div class="form-group full-width">
+            <label>Enrollment *</label>
+            <div class="custom-dropdown">
+              <button type="button" class="dropdown-btn"
+                (click)="toggleEnrollDropdown()"
+                [class.active]="showEnrollDropdown()"
+                [class.error]="isInvalid('enrollment_id')">
+                <span>{{ selectedEnrollLabel() || 'Select Enrollment' }}</span>
+                <span class="arrow">▼</span>
+              </button>
+
+              @if (showEnrollDropdown()) {
+                <div class="dropdown-menu">
+                  @for (e of enrollments(); track e.id) {
+                    <div class="dropdown-item" (click)="selectEnrollment(e)">
+                      E{{ e.id }} — {{ e.student_name }} ({{ e.course_name }}) — Rs. {{ e.course_fee }}
+                    </div>
+                  }
+                  @if (enrollments().length === 0) {
+                    <div class="dropdown-item" style="color: #9ca3af; cursor: not-allowed;">
+                      No enrollments found
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+            @if (isInvalid('enrollment_id')) {
+              <span class="error-msg">⚠ Enrollment required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Total Course Fee</label>
+            <input formControlName="total_fee" readonly />
+          </div>
+
+          <div class="form-group">
+            <label>Previously Paid</label>
+            <input [value]="previouslyPaid()" readonly />
+          </div>
+
+          <div class="form-group">
+            <label>Payment Amount *</label>
+            <input type="number" formControlName="paid_amount"
+              (input)="onPaidChange($event)"
+              [class.error]="isInvalid('paid_amount')" />
+            @if (isInvalid('paid_amount')) {
+              <span class="error-msg">⚠ Payment amount required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Remaining Balance</label>
+            <input [value]="remainingBalance()" readonly />
+          </div>
+
+          <div class="form-group">
+            <label>Payment Method *</label>
+            <select formControlName="payment_method" class="status-select">
+              @for (m of paymentMethods; track m) {
+                <option [value]="m">{{ m }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Payment Date *</label>
+            <input type="date" formControlName="payment_date"
+              [class.error]="isInvalid('payment_date')" />
+            @if (isInvalid('payment_date')) {
+              <span class="error-msg">⚠ Date required</span>
+            }
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="save-btn">
+              {{ selectedPaymentId() === null ? 'Submit Payment' : 'Update' }}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  }
+
+</div>
