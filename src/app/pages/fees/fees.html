@@ -83,31 +83,31 @@
 
           <!-- Enrollment Dropdown -->
           <div class="form-group full-width">
-            <label>Enrollment *</label>
-            <div class="custom-dropdown">
-              <button type="button" class="dropdown-btn"
-                (click)="toggleEnrollDropdown()"
-                [class.active]="showEnrollDropdown()"
-                [class.error]="isInvalid('enrollment_id')">
-                <span>{{ selectedEnrollLabel() || 'Select Enrollment' }}</span>
-                <span class="arrow">▼</span>
-              </button>
 
-              @if (showEnrollDropdown()) {
-                <div class="dropdown-menu">
-                  @for (e of enrollments(); track e.id) {
-                    <div class="dropdown-item" (click)="selectEnrollment(e)">
-                      E{{ e.id }} — {{ e.student_name }} ({{ e.course_name }}) — Rs. {{ e.course_fee }}
-                    </div>
-                  }
-                  @if (enrollments().length === 0) {
-                    <div class="dropdown-item" style="color: #9ca3af; cursor: not-allowed;">
-                      No enrollments found
-                    </div>
-                  }
-                </div>
-              }
-            </div>
+<div class="form-group full-width">
+  <label>Enrollment *</label>
+
+  <select
+    formControlName="enrollment_id"
+    class="form-select"
+    [class.error]="isInvalid('enrollment_id')"
+    (change)="onEnrollmentChange($event)"
+  >
+    <option value="">Select Enrollment</option>
+
+    @for (e of enrollments(); track e.id) {
+      <option [value]="e.id">
+        E{{ e.id }} — {{ e.student_name }} ({{ e.course_name }}) — Rs. {{ e.course_fee }}
+      </option>
+    }
+  </select>
+
+  @if (isInvalid('enrollment_id')) {
+    <span class="error-msg">
+      ⚠ Enrollment required
+    </span>
+  }
+</div>
             @if (isInvalid('enrollment_id')) {
               <span class="error-msg">⚠ Enrollment required</span>
             }

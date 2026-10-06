@@ -75,52 +75,52 @@
         <form [formGroup]="form" (ngSubmit)="saveEnrollment()" class="modal-form">
 
           <!-- Student -->
-          <div class="form-group">
-            <label>Student *</label>
-            <div class="custom-dropdown">
-              <button type="button" class="dropdown-btn"
-                (click)="toggleStudentDropdown()"
-                [class.active]="showStudentDropdown()"
-                [class.error]="isInvalid('student_id')">
-                <span>{{ selectedStudentLabel() || 'Select Student' }}</span>
-                <span class="arrow">▼</span>
-              </button>
-              @if (showStudentDropdown()) {
-                <div class="dropdown-menu">
-                  @for (s of students(); track s.id) {
-                    <div class="dropdown-item" (click)="selectStudent(s)">{{ s.name }}</div>
-                  }
-                </div>
-              }
-            </div>
-            @if (isInvalid('student_id')) {
-              <span class="error-msg">⚠ Student required</span>
-            }
-          </div>
+<div class="form-group">
+  <label>Student *</label>
+
+  <select
+    formControlName="student_id"
+    class="form-select"
+    [class.error]="isInvalid('student_id')"
+    (change)="onStudentChange($event)"
+  >
+    <option value="">Select Student</option>
+
+    @for (student of students(); track student.id) {
+      <option [value]="student.id">
+        {{ student.name }}
+      </option>
+    }
+  </select>
+
+  @if (isInvalid('student_id')) {
+    <span class="error-msg">⚠ Student required</span>
+  }
+</div>
 
           <!-- Course -->
-          <div class="form-group">
-            <label>Course *</label>
-            <div class="custom-dropdown">
-              <button type="button" class="dropdown-btn"
-                (click)="toggleCourseDropdown()"
-                [class.active]="showCourseDropdown()"
-                [class.error]="isInvalid('course_id')">
-                <span>{{ selectedCourseLabel() || 'Select Course' }}</span>
-                <span class="arrow">▼</span>
-              </button>
-              @if (showCourseDropdown()) {
-                <div class="dropdown-menu">
-                  @for (c of courses(); track c.id) {
-                    <div class="dropdown-item" (click)="selectCourse(c)">{{ c.course_name }}</div>
-                  }
-                </div>
-              }
-            </div>
-            @if (isInvalid('course_id')) {
-              <span class="error-msg">⚠ Course required</span>
-            }
-          </div>
+<div class="form-group">
+  <label>Course *</label>
+
+  <select
+    formControlName="course_id"
+    class="form-select"
+    [class.error]="isInvalid('course_id')"
+    (change)="onCourseChange($event)"
+  >
+    <option value="">Select Course</option>
+
+    @for (course of courses(); track course.id) {
+      <option [value]="course.id">
+        {{ course.course_name }}
+      </option>
+    }
+  </select>
+
+  @if (isInvalid('course_id')) {
+    <span class="error-msg">⚠ Course required</span>
+  }
+</div>
 
           <div class="form-group">
             <label>Course Fee</label>

@@ -20,11 +20,22 @@
         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-user me-2"></i>Admin
         </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
+   <ul class="dropdown-menu dropdown-menu-end">
+  <li>
+    <a class="dropdown-item" routerLink="/settings">
+      ⚙️ Settings
+    </a>
+  </li>
+  <li>
+  <a class="dropdown-item" routerLink="/admin-profile">👤 Admin Profile</a>
+  </li>
+  <li><hr class="dropdown-divider"></li>
+  <li>
+    <a class="dropdown-item" (click)="logout()" style="cursor: pointer; color: #ef4444;">
+      🚪 Logout
+    </a>
+  </li>
+</ul>
       </div>
 
     </div>

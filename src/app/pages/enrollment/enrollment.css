@@ -196,6 +196,48 @@ tbody tr:hover td { background: #f9fafb; }
 .toast-text { flex: 1; font-size: 14px; font-weight: 500; }
 .toast-close { background: transparent; border: none; color: #9ca3af; cursor: pointer; padding: 2px 8px; }
 
+.form-select {
+  width: 100%;
+  padding: 10px 14px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #1a1a2e;
+
+  font-size: 14px;
+  outline: none;
+
+  cursor: pointer;
+}
+
+.form-select:focus {
+  border-color: #465fff;
+
+  box-shadow: 0 0 0 3px rgba(70, 95, 255, 0.15);
+}
+
+.form-select.error {
+  border-color: #ef4444;
+}
+
+.enrollments-page.dark .form-select {
+  background: #1f1f2e;
+  border-color: #2a2a3a;
+  color: #e4e4e7;
+}
+
+.form-select option {
+  background: #ffffff;
+  color: #1a1a2e;
+}
+
+.enrollments-page.dark .form-select option {
+  background: #1f1f2e;
+  color: #e4e4e7;
+}
+
 @media (max-width: 768px) {
   .enrollments-page { padding: 16px; }
   .page-header { flex-direction: column; gap: 12px; align-items: stretch; }

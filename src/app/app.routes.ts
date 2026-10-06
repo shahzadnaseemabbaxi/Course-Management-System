@@ -5,6 +5,7 @@ import { Fees } from './pages/fees/fees';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Course } from './pages/course/course';
 import { Setting } from './pages/setting/setting';
+import { AdminProfile } from './pages/admin-profile/admin-profile';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'courses',     component: Course },
   { path: 'enrollments', component: Enrollment },
   { path: 'fees',        component: Fees },
-  { path: 'settings',    component: Setting}
+  { path: 'settings',    component: Setting},
+  { path: 'admin-profile',    component: AdminProfile }
 ];

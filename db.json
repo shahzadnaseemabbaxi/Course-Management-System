@@ -19,13 +19,13 @@
       "department": "Artificial Intelligence"
     },
     {
-      "id": "3",
-      "name": "Ali Khan",
-      "father_name": "Ahmed Khan",
-      "email": "ali@gmail.com",
-      "phone": "03001234567",
-      "address": "Islamabad",
-      "department": "Software Engineering"
+      "name": "Shahzad Naseem Abbasi",
+      "father_name": "Naseem",
+      "email": "shahzadnaseemabbasi@gmail.com",
+      "phone": "03288653097",
+      "address": "Small Industry Road Mandian Abbottabad",
+      "department": "Computer Science",
+      "id": "o5YAR7M02v8"
     }
   ],
   "courses": [
@@ -64,8 +64,60 @@
       "instructor": "Ayaan Abbasi",
       "available_seats": "10",
       "course_fee": "5000"
+    },
+    {
+      "course_name": "Computer Science",
+      "course_description": "Computer Science",
+      "course_duration": "1 week",
+      "instructor": "Ammad",
+      "available_seats": "20",
+      "course_fee": 5000,
+      "id": "de45jfjSeEM"
     }
   ],
-  "enrollments": [],
-  "payments": []
+  "enrollments": [
+    {
+      "student_id": "1",
+      "student_name": "Mahaz Naseem Abbasi",
+      "course_id": "3",
+      "course_name": "JavaScript",
+      "course_fee": "8000",
+      "enroll_date": "2026-10-06",
+      "status": "Active",
+      "id": "Z7JD8r352K8"
+    },
+    {
+      "student_id": "2",
+      "student_name": "Ammad Naseem Abbasi",
+      "course_id": "1",
+      "course_name": "Angular",
+      "course_fee": "10000",
+      "enroll_date": "2026-10-08",
+      "status": "Active",
+      "id": "BbeoaIGPFCs"
+    }
+  ],
+  "payments": [
+    {
+      "enrollment_id": "Z7JD8r352K8",
+      "student_name": "Mahaz Naseem Abbasi",
+      "course_name": "JavaScript",
+      "total_fee": "8000",
+      "paid_amount": 5000,
+      "payment_method": "Online",
+      "payment_date": "2026-10-06",
+      "id": "4XtfqMFxisA"
+    },
+    {
+      "enrollment_id": "BbeoaIGPFCs",
+      "student_name": "Ammad Naseem Abbasi",
+      "course_name": "Angular",
+      "total_fee": "10000",
+      "paid_amount": 8000,
+      "payment_method": "Bank Transfer",
+      "payment_date": "2026-10-06",
+      "id": "6ZMp0SF7Srs"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

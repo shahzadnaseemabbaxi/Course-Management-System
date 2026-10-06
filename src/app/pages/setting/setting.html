@@ -1,1 +1,125 @@
-<p>setting works!</p>
+<div class="settings-page" [class.dark]="themeService.isDarkMode()">
+
+  @if (showToast()) {
+    <div class="toast-popup" [class.success]="toastType() === 'success'">
+      <span class="toast-text">{{ toastMessage() }}</span>
+      <button class="toast-close" (click)="showToast.set(false)">✕</button>
+    </div>
+  }
+
+  <div class="page-header">
+    <h2>Settings</h2>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn" [class.active]="activeTab() === 'profile'" (click)="setTab('profile')">
+      👤 Profile
+    </button>
+    <button class="tab-btn" [class.active]="activeTab() === 'password'" (click)="setTab('password')">
+      🔒 Password
+    </button>
+    <button class="tab-btn" [class.active]="activeTab() === 'appearance'" (click)="setTab('appearance')">
+      🎨 Appearance
+    </button>
+    <button class="tab-btn" [class.active]="activeTab() === 'data'" (click)="setTab('data')">
+      💾 Data
+    </button>
+  </div>
+
+  <!-- PROFILE TAB -->
+  @if (activeTab() === 'profile') {
+    <div class="settings-card">
+      <h3>Profile Information</h3>
+      <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="settings-form">
+        <div class="form-group">
+          <label>Name *</label>
+          <input formControlName="name" [class.error]="isInvalid(profileForm, 'name')" />
+          @if (isInvalid(profileForm, 'name')) {
+            <span class="error-msg">⚠ Name required</span>
+          }
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" formControlName="email" [class.error]="isInvalid(profileForm, 'email')" />
+          @if (isInvalid(profileForm, 'email')) {
+            <span class="error-msg">⚠ Valid email required</span>
+          }
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input formControlName="phone" />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="save-btn">💾 Save Changes</button>
+        </div>
+      </form>
+    </div>
+  }
+
+  <!-- PASSWORD TAB -->
+  @if (activeTab() === 'password') {
+    <div class="settings-card">
+      <h3>Change Password</h3>
+      <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="settings-form">
+        <div class="form-group">
+          <label>Current Password *</label>
+          <input type="password" formControlName="current" [class.error]="isInvalid(passwordForm, 'current')" />
+          @if (isInvalid(passwordForm, 'current')) {
+            <span class="error-msg">⚠ Current password required</span>
+          }
+        </div>
+        <div class="form-group">
+          <label>New Password *</label>
+          <input type="password" formControlName="newPass" [class.error]="isInvalid(passwordForm, 'newPass')" />
+          @if (isInvalid(passwordForm, 'newPass')) {
+            <span class="error-msg">⚠ Min 6 characters</span>
+          }
+        </div>
+        <div class="form-group">
+          <label>Confirm Password *</label>
+          <input type="password" formControlName="confirm" [class.error]="isInvalid(passwordForm, 'confirm')" />
+          @if (isInvalid(passwordForm, 'confirm')) {
+            <span class="error-msg">⚠ Confirm password required</span>
+          }
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="save-btn">🔒 Update Password</button>
+        </div>
+      </form>
+    </div>
+  }
+
+  <!-- APPEARANCE TAB -->
+  @if (activeTab() === 'appearance') {
+    <div class="settings-card">
+      <h3>Appearance</h3>
+      <div class="appearance-section">
+        <p class="label">Accent Color</p>
+        <div class="color-picker">
+          <div class="color-dot" style="background: #10b981;" (click)="setAccent('#10b981')"></div>
+          <div class="color-dot" style="background: #465fff;" (click)="setAccent('#465fff')"></div>
+          <div class="color-dot" style="background: #a855f7;" (click)="setAccent('#a855f7')"></div>
+          <div class="color-dot" style="background: #ef4444;" (click)="setAccent('#ef4444')"></div>
+          <div class="color-dot" style="background: #f59e0b;" (click)="setAccent('#f59e0b')"></div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- DATA TAB -->
+  @if (activeTab() === 'data') {
+    <div class="settings-card">
+      <h3>Data Management</h3>
+      <div class="data-section">
+        <p>Export all your data as a JSON file for backup.</p>
+        <button class="export-btn" (click)="exportJSON()">📥 Export JSON</button>
+      </div>
+      <div class="data-section danger">
+        <p>⚠ This will delete all students, courses, enrollments and payments. This cannot be undone.</p>
+        <button class="danger-btn" (click)="resetAllData()">🗑 Reset All Data</button>
+      </div>
+    </div>
+  }
+
+</div>

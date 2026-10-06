@@ -1,0 +1,157 @@
+<div class="admin-profile-page" [class.dark]="themeService.isDarkMode()">
+
+  @if (showToast()) {
+    <div class="toast-popup" [class.success]="toastType() === 'success'">
+      <span class="toast-text">{{ toastMessage() }}</span>
+      <button class="toast-close" (click)="showToast.set(false)">✕</button>
+    </div>
+  }
+
+  <div class="page-header">
+    <h2>Admin Profile</h2>
+    <button class="edit-toggle-btn" (click)="toggleEdit()">
+      {{ isEditing() ? '✕ Cancel' : '✏️ Edit Profile' }}
+    </button>
+  </div>
+
+  <div class="profile-container">
+
+ <!-- Left: Avatar Card -->
+<div class="profile-card avatar-card">
+
+  <!-- ✅ Hidden file input -->
+  <input
+    type="file"
+    id="photoInput"
+    accept="image/*"
+    (change)="onPhotoSelected($event)"
+    style="display: none;"
+  />
+
+  <!-- ✅ Avatar with photo or letter -->
+  <div class="avatar-wrapper">
+  @if (profilePicture()) {
+    <img
+      [src]="profilePicture()"
+      alt="Profile"
+      class="avatar-img"
+      (click)="openImagePreview()"
+      style="cursor: pointer;"
+      title="Click to view full image"
+    />
+  } @else {
+    <div class="avatar">
+      {{ profile().name.charAt(0) }}
+    </div>
+  }
+
+  <button class="camera-btn" (click)="triggerFileInput()" title="Change Photo">
+    📷
+  </button>
+</div>
+
+  <!-- ✅ Buttons -->
+  <div class="photo-actions">
+    <button class="change-photo-btn" (click)="triggerFileInput()">
+      {{ profilePicture() ? 'Change Photo' : 'Upload Photo' }}
+    </button>
+
+    @if (profilePicture()) {
+      <button class="remove-photo-btn" (click)="removePhoto()">
+        Remove
+      </button>
+    }
+  </div>
+
+  <h3>{{ profile().name }}</h3>
+  <span class="role-badge">{{ profile().role }}</span>
+  <p class="admin-id">ID: {{ profile().id }}</p>
+</div>
+
+    <!-- Right: Info Card -->
+    <div class="profile-card info-card">
+      <h3>Account Information</h3>
+
+      <!-- VIEW MODE -->
+      @if (!isEditing()) {
+        <div class="info-list">
+          <div class="info-row">
+            <span class="info-label">👤 Name</span>
+            <span class="info-value">{{ profile().name }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">📧 Email</span>
+            <span class="info-value">{{ profile().email }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">📱 Phone</span>
+            <span class="info-value">{{ profile().phone }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">🎭 Role</span>
+            <span class="info-value">{{ profile().role }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">📅 Joined</span>
+            <span class="info-value">{{ profile().joinedDate }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">🕒 Last Login</span>
+            <span class="info-value">{{ profile().lastLogin }}</span>
+          </div>
+        </div>
+      }
+
+      <!-- EDIT MODE -->
+      @if (isEditing()) {
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="edit-form">
+
+          <div class="form-group">
+            <label>Name *</label>
+            <input formControlName="name" [class.error]="isInvalid('name')" />
+            @if (isInvalid('name')) {
+              <span class="error-msg">⚠ Name required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" formControlName="email" [class.error]="isInvalid('email')" />
+            @if (isInvalid('email')) {
+              <span class="error-msg">⚠ Valid email required</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Phone *</label>
+            <input formControlName="phone" [class.error]="isInvalid('phone')" />
+            @if (isInvalid('phone')) {
+              <span class="error-msg">⚠ Phone required</span>
+            }
+          </div>
+
+          <div class="edit-actions">
+            <button type="button" class="cancel-btn" (click)="toggleEdit()">Cancel</button>
+            <button type="submit" class="save-btn">💾 Save Changes</button>
+          </div>
+
+        </form>
+      }
+    </div>
+
+  </div>
+
+  <!-- ✅ Full Image Preview Modal -->
+@if (showImagePreview()) {
+  <div class="image-preview-overlay" (click)="closeImagePreview()">
+    <button class="preview-close-btn" (click)="closeImagePreview()">✕</button>
+    <img
+      [src]="profilePicture()"
+      alt="Full Preview"
+      class="preview-image"
+      (click)="$event.stopPropagation()"
+    />
+    <p class="preview-hint">Click anywhere or press ESC to close</p>
+  </div>
+}
+</div>

@@ -66,12 +66,49 @@ export class Enrollment implements OnInit {
     this.http.get<any[]>('http://localhost:3000/students')
       .subscribe(data => this.students.set(data));
   }
+onStudentChange(event: Event) {
+  const select = event.target as HTMLSelectElement;
+  const studentId = select.value;    // ✅ Number() HATAO
+
+  console.log('🔵 Student ID:', studentId);
+
+  const student = this.students().find(s => String(s.id) === studentId);
+
+  if (student) {
+    this.form.patchValue({
+      student_id: student.id,
+      student_name: student.name
+    });
+    console.log('✅ Student set:', student.name);
+  } else {
+    console.log('❌ Student not found:', studentId);
+  }
+}
 
   loadCourses() {
     this.http.get<any[]>('http://localhost:3000/courses')
       .subscribe(data => this.courses.set(data));
   }
+onCourseChange(event: Event) {
+  const select = event.target as HTMLSelectElement;
+  const courseId = select.value;    // ✅ Number() HATAO
 
+  console.log('🔵 Course ID:', courseId);
+  console.log('🔵 Courses:', this.courses());
+
+  const course = this.courses().find(c => String(c.id) === courseId);
+
+  if (course) {
+    this.form.patchValue({
+      course_id: course.id,
+      course_name: course.course_name,
+      course_fee: course.course_fee
+    });
+    console.log('✅ Fee set:', course.course_fee);
+  } else {
+    console.log('❌ Course not found:', courseId);
+  }
+}
   toggleStudentDropdown() { this.showStudentDropdown.update(v => !v); }
   toggleCourseDropdown()  { this.showCourseDropdown.update(v => !v); }
 

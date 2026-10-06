@@ -3,14 +3,14 @@
   <!-- Top Row -->
   <div class="top-row">
 
-    <!-- Left: 2 Metric Cards -->
+    <!-- Metric Cards -->
     <div class="metrics-column">
 
       <div class="metric-card">
         <div class="metric-icon">👥</div>
         <div class="metric-label">Total Students</div>
         <div class="metric-bottom">
-          <span class="metric-value">{{ totalStudents() | number }}</span>
+          <span class="metric-value">{{ totalStudents() }}</span>
           <span class="badge positive">↑ 11.01%</span>
         </div>
       </div>
@@ -19,14 +19,14 @@
         <div class="metric-icon">📚</div>
         <div class="metric-label">Total Courses</div>
         <div class="metric-bottom">
-          <span class="metric-value">{{ totalCourses() | number }}</span>
+          <span class="metric-value">{{ totalCourses() }}</span>
           <span class="badge negative">↓ 9.05%</span>
         </div>
       </div>
 
     </div>
 
-    <!-- Right: Monthly Target -->
+    <!-- Enrollment Target -->
     <div class="target-card">
       <div class="card-header">
         <div>
@@ -39,14 +39,12 @@
       <div class="gauge-wrap">
         <svg viewBox="0 0 220 130" class="gauge-svg">
           <path d="M 20 110 A 90 90 0 0 1 200 110"
-                fill="none" stroke="#2a2a3a" stroke-width="14" stroke-linecap="round"
-                class="gauge-bg"/>
+                fill="none" stroke="#2a2a3a" stroke-width="14" stroke-linecap="round"/>
           <path d="M 20 110 A 90 90 0 0 1 200 110"
                 fill="none" stroke="#465fff" stroke-width="14" stroke-linecap="round"
                 [attr.stroke-dasharray]="283"
                 [attr.stroke-dashoffset]="283 - (283 * monthlyTarget() / 100)" />
         </svg>
-
         <div class="gauge-text">
           <div class="gauge-value">{{ monthlyTarget() }}%</div>
           <div class="gauge-badge">+{{ targetGrowth() }}%</div>
@@ -54,7 +52,7 @@
       </div>
 
       <p class="target-desc">
-        {{ totalEnrollments() }} students enrolled this month. Keep up your good work!
+        {{ totalEnrollments() }} students enrolled so far. Keep up your good work!
       </p>
 
       <div class="target-stats">
@@ -90,7 +88,6 @@
         <span>100</span>
         <span>0</span>
       </div>
-
       <div class="bars-area">
         @for (item of salesData; track item.month) {
           <div class="bar-wrapper">

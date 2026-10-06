@@ -70,6 +70,55 @@ export class Fees implements OnInit {
     this.http.get<any[]>('http://localhost:3000/enrollments')
       .subscribe(data => this.enrollments.set(data));
   }
+  onEnrollmentChange(event: Event) {
+  // Select se selected ID lena
+  const select = event.target as HTMLSelectElement;
+
+  // ID ko string mein lena
+  const enrollmentId = select.value;
+
+  // Agar kuch select nahi kiya
+  if (!enrollmentId) {
+    return;
+  }
+
+  // Selected enrollment find karna
+  const enrollment = this.enrollments()
+    .find(e => String(e.id) === enrollmentId);
+
+  // Agar enrollment nahi mila
+  if (!enrollment) {
+    return;
+  }
+
+  // Form mein enrollment ki information set karna
+  this.form.patchValue({
+    enrollment_id: enrollment.id,
+    student_name: enrollment.student_name || '',
+    course_name: enrollment.course_name || '',
+    total_fee: enrollment.course_fee
+  });
+
+  // Total fee set karna
+  const total = Number(enrollment.course_fee) || 0;
+  this.totalFee.set(total);
+
+  // Pehle kitni payment hui hai wo calculate karna
+  const paid = this.payments()
+    .filter(p =>
+      String(p.enrollment_id) === String(enrollment.id)
+    )
+    .reduce(
+      (sum, p) => sum + Number(p.paid_amount || 0),
+      0
+    );
+
+  // Previously paid set
+  this.previouslyPaid.set(paid);
+
+  // Remaining balance calculate
+  this.remainingBalance.set(total - paid);
+}
 
   toggleEnrollDropdown() {
     this.showEnrollDropdown.update(v => !v);

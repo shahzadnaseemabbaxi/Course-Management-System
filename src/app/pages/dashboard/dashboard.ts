@@ -1,29 +1,32 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { ThemeService } from '../../services/theme';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule],
-  styleUrl: './dashboard.css',
   templateUrl: './dashboard.html',
+  styleUrl: './dashboard.css',
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
 
-  constructor(public themeService: ThemeService) {}
+  private http = inject(HttpClient);
+  public themeService = inject(ThemeService);
 
-  // Summary Cards
-  totalStudents = signal<number>(120);
-  totalCourses = signal<number>(12);
-  totalEnrollments = signal<number>(180);
-  totalFee = signal<number>(5000);
+  // ✅ Signals — real data se fill honge
+  totalStudents = signal<number>(0);
+  totalCourses = signal<number>(0);
+  totalEnrollments = signal<number>(0);
+  totalFee = signal<number>(0);
+  pendingFee = signal<number>(0);
 
-  // Monthly Target
+  // Enrollment Target (percentage)
   monthlyTarget = signal<number>(72);
   targetGrowth = signal<number>(10);
 
-  // Monthly Sales Chart
+  // Monthly fees chart
   salesData = [
     { month: 'Jan', value: 160 },
     { month: 'Feb', value: 350 },
@@ -40,6 +43,66 @@ export class Dashboard {
   ];
 
   maxSales = 400;
+
+  ngOnInit() {
+    console.log('🔵 Dashboard ngOnInit');
+    this.loadAllData();
+  }
+
+  // ✅ Sab data ek saath load karo
+  loadAllData() {
+    // Students
+    this.http.get<any[]>('http://localhost:3000/students')
+      .subscribe({
+        next: (data) => {
+          console.log('🟢 Students:', data.length);
+          this.totalStudents.set(data.length);
+        },
+        error: (err) => console.error('❌ Students error:', err)
+      });
+
+    // Courses
+    this.http.get<any[]>('http://localhost:3000/courses')
+      .subscribe({
+        next: (data) => {
+          console.log('🟢 Courses:', data.length);
+          this.totalCourses.set(data.length);
+        },
+        error: (err) => console.error('❌ Courses error:', err)
+      });
+
+    // Enrollments
+    this.http.get<any[]>('http://localhost:3000/enrollments')
+      .subscribe({
+        next: (data) => {
+          console.log('🟢 Enrollments:', data.length);
+          this.totalEnrollments.set(data.length);
+
+          // Total enrolled fee calculate
+          const total = data.reduce((sum, e) => sum + Number(e.course_fee || 0), 0);
+          this.totalFee.set(total);
+          console.log('🟢 Total enrolled fee:', total);
+        },
+        error: (err) => console.error('❌ Enrollments error:', err)
+      });
+
+    // Payments — Pending calculate
+    this.http.get<any[]>('http://localhost:3000/payments')
+      .subscribe({
+        next: (payments) => {
+          // Enrollments + Payments dono chahiye pending ke liye
+          this.http.get<any[]>('http://localhost:3000/enrollments')
+            .subscribe(enrollments => {
+              const totalEnrolled = enrollments.reduce((sum, e) => sum + Number(e.course_fee || 0), 0);
+              const totalPaid = payments.reduce((sum, p) => sum + Number(p.paid_amount || 0), 0);
+              const pending = totalEnrolled - totalPaid;
+              this.pendingFee.set(pending);
+              console.log('🟢 Total paid:', totalPaid, '| Pending:', pending);
+            });
+        },
+        error: (err) => console.error('❌ Payments error:', err)
+      });
+  }
 
   getBarHeight(value: number): number {
     return (value / this.maxSales) * 100;
