@@ -69,3 +69,192 @@
 .navbar.dark .theme-toggle:hover {
   background: #1f1f2e;
 }
+/* =========================
+   Hamburger Button (Mobile Only)
+========================= */
+.hamburger-btn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: transparent;
+  color: #6b7280;
+  font-size: 20px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.navbar.dark .hamburger-btn {
+  border-color: #2a2a3a;
+  color: #9ca3af;
+}
+
+.hamburger-btn:hover {
+  background: #f3f4f6;
+  color: #10b981;
+  border-color: #10b981;
+}
+
+.navbar.dark .hamburger-btn:hover {
+  background: #1f1f2e;
+  color: #10b981;
+}
+
+/* ✅ Mobile pe hi dikhao */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+  }
+}
+/* =========================
+   Tablet & Mobile (<768px)
+========================= */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 12px;
+    height: 60px;
+  }
+
+  .container-fluid {
+    gap: 8px;
+    flex-wrap: nowrap;              /* ✅ koi wrap nahi */
+  }
+
+  /* Hamburger chhota */
+  .hamburger-btn {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+    margin-right: 4px;
+  }
+
+  /* Search form flexible */
+  .container-fluid .d-flex {
+    flex: 1;
+    min-width: 0;                    /* ✅ shrinks properly */
+    gap: 6px;
+  }
+
+  /* Search input chhota */
+  .form-control {
+    padding: 8px 10px;
+    font-size: 13px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  /* Search button chhota */
+  .btn-outline-success {
+    padding: 8px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* Theme toggle chhota */
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* Admin dropdown button chhota */
+  .dropdown-toggle {
+    padding: 6px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .right-side {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+}
+
+/* =========================
+   Small Mobile (<500px)
+========================= */
+@media (max-width: 500px) {
+  .navbar {
+    padding: 8px 10px;
+    height: 56px;
+  }
+
+  .hamburger-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+    margin-right: 2px;
+  }
+
+  /* Search button hide karo — sirf icon ya shortcut */
+  .btn-outline-success {
+    display: none;                   /* ✅ mobile pe hide */
+  }
+
+  /* Search input aur chhota */
+  .form-control {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  /* Theme toggle chhota */
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  /* Admin text hide karo — sirf icon */
+  .dropdown-toggle {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .dropdown-toggle i {
+    margin-right: 0;
+  }
+
+  /* Admin ka naam hide karo (agar text hai) */
+  .dropdown-toggle span {
+    display: none;
+  }
+}
+
+/* =========================
+   Very Small (<380px) — 320px tak
+========================= */
+@media (max-width: 380px) {
+  .navbar {
+    padding: 6px 8px;
+    height: 52px;
+  }
+
+  .hamburger-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .form-control {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .theme-toggle {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .dropdown-toggle {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+}

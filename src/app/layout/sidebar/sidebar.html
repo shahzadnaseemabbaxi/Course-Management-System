@@ -10,6 +10,7 @@
         class="nav-item"
         [routerLink]="item.route"
         routerLinkActive="active"
+        (click)="onLinkClick()"
       >
         <span class="nav-icon">{{ item.icon }}</span>
         <span class="nav-text">{{ item.name }}</span>

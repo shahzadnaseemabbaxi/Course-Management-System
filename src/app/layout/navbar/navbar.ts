@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeService } from '../../services/theme';
 import { RouterLink } from '@angular/router';
+import { ThemeService } from '../../services/theme';
 
 @Component({
   imports: [CommonModule, RouterLink],
@@ -10,15 +10,26 @@ import { RouterLink } from '@angular/router';
   templateUrl: './navbar.html',
 })
 export class Navbar {
+
+  // ✅ Output event
+  toggleSidebar = output<void>();
+
+  isAdminMenuOpen = signal<boolean>(false);
+
   constructor(public themeService: ThemeService) {}
 
   toggleTheme() {
     this.themeService.toggleTheme();
   }
-  logout() {
-  if (confirm('Are you sure you want to logout?')) {
-    localStorage.clear();
-    window.location.href = '/';
+
+  onToggleSidebar() {
+    this.toggleSidebar.emit();
   }
-}
+
+  logout() {
+    if (confirm('Are you sure you want to logout?')) {
+      localStorage.clear();
+      window.location.href = '/';
+    }
+  }
 }

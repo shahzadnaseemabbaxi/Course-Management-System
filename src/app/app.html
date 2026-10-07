@@ -1,9 +1,20 @@
-<app-navbar></app-navbar>
+<app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
 
 <div class="app-body">
-  <app-sidebar></app-sidebar>
 
+  <!-- Overlay (mobile) -->
+  @if (sidebarOpen()) {
+    <div class="sidebar-overlay" (click)="closeSidebar()"></div>
+  }
+
+  <!-- Sidebar -->
+  <div class="sidebar-wrapper" [class.open]="sidebarOpen()">
+    <app-sidebar (linkClicked)="closeSidebar()"></app-sidebar>
+  </div>
+
+  <!-- Main Content -->
   <main class="main-content" [class.dark]="themeService.isDarkMode()">
     <router-outlet></router-outlet>
   </main>
+
 </div>

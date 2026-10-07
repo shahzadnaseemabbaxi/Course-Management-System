@@ -1,6 +1,15 @@
+/* =========================
+   App Body
+========================= */
 .app-body {
   display: flex;
   min-height: calc(100vh - 70px);
+  position: relative;
+}
+
+.sidebar-wrapper {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 
 .main-content {
@@ -8,8 +17,69 @@
   background: #f5f6fa;
   transition: background 0.3s;
   overflow-y: auto;
+  min-width: 0;
 }
 
 .main-content.dark {
   background: #0f0f1a;
+}
+
+/* Overlay — hidden by default */
+.sidebar-overlay {
+  display: none;
+}
+
+/* =========================
+   Desktop (>768px)
+========================= */
+@media (min-width: 769px) {
+  .sidebar-wrapper {
+    transform: translateX(0);
+  }
+}
+
+/* =========================
+   Mobile (<=768px)
+========================= */
+@media (max-width: 768px) {
+
+  /* Sidebar hidden by default (slide out) */
+  .sidebar-wrapper {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  /* Jab hamburger click ho → slide in */
+  .sidebar-wrapper.open {
+    transform: translateX(0);
+  }
+
+  /* Overlay show */
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 998;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+  }
 }
