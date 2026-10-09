@@ -1,46 +1,97 @@
 <nav class="navbar" [class.dark]="themeService.isDarkMode()">
   <div class="container-fluid">
-    <!-- ✅ Sirf hamburger button add kiya -->
-    <button class="hamburger-btn" (click)="onToggleSidebar()" title="Menu">☰</button>
 
-    <!-- Search form (left side) -->
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success" type="submit">Search</button>
+    <!-- ✅ Left: Hamburger + Logo -->
+    <div class="navbar-left">
+      <button class="hamburger-btn" (click)="onToggleSidebar()" title="Menu">
+        ☰
+      </button>
+
+<div class="navbar-logo">
+  <img src="/logo.png" alt="CMS Logo" class="logo-img" />
+</div>
+    </div>
+
+    <!-- ✅ Center: Search with Button -->
+    <form class="search-box" role="search" (submit)="$event.preventDefault()">
+      <span class="search-icon">🔍</span>
+      <input
+        type="search"
+        class="search-input"
+        placeholder="Search students, courses..."
+        aria-label="Search"
+      />
+      <button class="search-btn" type="submit">Search</button>
     </form>
 
-    <!-- Right side: Theme toggle + Admin dropdown -->
-    <div class="right-side">
-      <!-- 🌙 / ☀️ Toggle Button -->
-      <button class="theme-toggle" (click)="toggleTheme()" title="Toggle Theme">
+    <!-- ✅ Right: Theme + Notifications + Admin -->
+    <div class="navbar-right">
+
+      <!-- Theme Toggle -->
+      <button
+        class="icon-btn theme-toggle"
+        (click)="toggleTheme()"
+        [title]="themeService.isDarkMode() ? 'Light Mode' : 'Dark Mode'">
         {{ themeService.isDarkMode() ? '☀️' : '🌙' }}
       </button>
 
-      <!-- Admin dropdown -->
-      <div class="dropdown">
+      <!-- Notifications -->
+      <button class="icon-btn notification-btn" title="Notifications">
+        🔔
+        <span class="notification-dot"></span>
+      </button>
+
+      <!-- Admin Dropdown -->
+      <div class="dropdown admin-dropdown">
         <button
-          class="btn dropdown-toggle"
+          class="admin-btn"
           type="button"
           data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fa-solid fa-user me-2"></i><span>Admin</span>
+          aria-expanded="false">
+          @if (profilePicture()) {
+            <img [src]="profilePicture()" alt="Admin" class="admin-avatar-img" />
+          } @else {
+            <div class="admin-avatar">A</div>
+          }
+       <span class="dropdown-arrow">▾</span>
+
         </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li>
-            <a class="dropdown-item" routerLink="/settings">⚙️ Settings</a>
-          </li>
-          <li>
-            <a class="dropdown-item" routerLink="/admin-profile">👤 Admin Profile</a>
+
+        <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
+          <li class="dropdown-header">
+            @if (profilePicture()) {
+              <img [src]="profilePicture()" alt="Admin" class="dropdown-header-avatar-img" />
+            } @else {
+              <div class="dropdown-header-avatar">A</div>
+            }
+            <div>
+              <div class="dropdown-header-name">{{ adminName() }}</div>
+              <div class="dropdown-header-email">{{ adminEmail() }}</div>
+            </div>
           </li>
           <li><hr class="dropdown-divider" /></li>
           <li>
-            <a class="dropdown-item" (click)="logout()" style="cursor: pointer; color: #ef4444"
-              >🚪 Logout</a
-            >
+            <a class="dropdown-item" routerLink="/admin-profile">
+              <span class="item-icon">👤</span>
+              <span>Admin Profile</span>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" routerLink="/settings">
+              <span class="item-icon">⚙️</span>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item logout-item" (click)="logout()" style="cursor: pointer;">
+              <span class="item-icon">🚪</span>
+              <span>Logout</span>
+            </a>
           </li>
         </ul>
       </div>
+
     </div>
   </div>
 </nav>

@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ThemeService } from '../../services/theme';
+import { ThemeService } from '../../../../core/services/theme';
 
 @Component({
   selector: 'app-dashboard',

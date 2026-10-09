@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Student } from './pages/student/student';
 import { Enrollment } from './pages/enrollment/enrollment';
 import { Fees } from './pages/fees/fees';
-import { Dashboard } from './pages/dashboard/dashboard';
+import { Dashboard } from './features/dashboard/components/dashboard/dashboard';
 import { Course } from './pages/course/course';
 import { Setting } from './pages/setting/setting';
 import { AdminProfile } from './pages/admin-profile/admin-profile';

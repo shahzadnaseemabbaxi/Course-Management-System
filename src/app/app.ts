@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './layout/navbar/navbar';
 import { Sidebar } from './layout/sidebar/sidebar';
-import { ThemeService } from './services/theme';
+import { ThemeService } from './core/services/theme';
 
 @Component({
   selector: 'app-root',

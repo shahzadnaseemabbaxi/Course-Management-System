@@ -99,8 +99,30 @@
       "status": "inactive"
     }
   ],
-  "payments": [],
+  "payments": [
+    {
+      "enrollment_id": "1",
+      "student_name": "Mahaz",
+      "course_name": "Angular",
+      "total_fee": "10000",
+      "paid_amount": 5000,
+      "payment_method": "Cash",
+      "payment_date": "2026-10-09",
+      "id": "usaAVZPZslg"
+    },
+    {
+      "enrollment_id": "2",
+      "student_name": "Ammad",
+      "course_name": "React",
+      "total_fee": "12000",
+      "paid_amount": 12000,
+      "payment_method": "Cash",
+      "payment_date": "2026-10-09",
+      "id": "4z1-TtFEh6E"
+    }
+  ],
   "settings": {
     "monthly_enrollment_target": 5
-  }
+  },
+  "$schema": "./node_modules/json-server/schema.json"
 }
