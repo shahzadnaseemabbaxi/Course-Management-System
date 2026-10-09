@@ -79,6 +79,7 @@ export class Course implements OnInit {
   }
 
   toggleSeatsDropdown() {
+    // v => !v current value ko ulta karta hai (true ko false aur false ko true); use na karo to toggle open/close nahi hoga,
     this.showSeatsDropdown.update(v => !v);
   }
 

@@ -354,6 +354,7 @@
   cursor: pointer;
 }
 
+/* Jab page ya element ko smoothly show karna ho  */
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }

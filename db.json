@@ -1,152 +1,106 @@
 {
   "students": [
     {
+      "id": "1",
       "name": "Mahaz Naseem Abbasi",
       "father_name": "Muhammad Naseem",
       "email": "abbasimahaz562@gmail.com",
-      "phone": "03480526933",
+      "phone": "+92 03480526933",
       "address": "Abbottabad",
-      "department": "Software Engineering",
-      "id": "1"
+      "department": "Computer Science",
+      "created_at": "2026-10-05"
     },
     {
       "id": "2",
       "name": "Ammad Naseem Abbasi",
       "father_name": "Muhammad Naseem",
       "email": "abbasiammad562@gmail.com",
-      "phone": "03411923376",
+      "phone": "+92 03411923376",
       "address": "Abbottabad",
-      "department": "Artificial Intelligence"
+      "department": "Artificial Intelligence",
+      "created_at": "2026-09-15"
     },
     {
+      "id": "3",
       "name": "Shahzad Naseem Abbasi",
-      "father_name": "Naseem",
+      "father_name": "Muhammad Naseem",
       "email": "shahzadnaseemabbasi@gmail.com",
-      "phone": "03288653097",
-      "address": "Small Industry Road Mandian Abbottabad",
+      "phone": "+92 03288653097",
+      "address": "Abbottabad",
       "department": "Computer Science",
-      "id": "o5YAR7M02v8"
+      "created_at": "2026-09-20"
     },
     {
-      "name": "Shahzad Naseem Abbasi",
-      "father_name": "dc\\vf",
-      "email": "shahzadnaseemabbasi@gmail.com",
-      "phone": "+92 3288653097",
-      "address": "Small Industry Road Mandian Abbottabad",
-      "department": "Computer Science",
-      "id": "fhzpaIRTEHM"
+      "id": "4",
+      "name": "Ali Khan",
+      "father_name": "Ahmed Khan",
+      "email": "ali@gmail.com",
+      "phone": "+92 03001234567",
+      "address": "Islamabad",
+      "department": "Software Engineering",
+      "created_at": "2026-10-01"
     }
   ],
   "courses": [
     {
       "id": "1",
       "course_name": "Angular",
-      "course_description": "Frontend framework",
-      "course_duration": "3 months",
-      "instructor": "Shahzad",
-      "available_seats": "20",
-      "course_fee": "10000"
+      "course_fee": "10000",
+      "created_at": "2026-10-03"
     },
     {
       "id": "2",
       "course_name": "React",
-      "course_description": "Frontend framework",
-      "course_duration": "1.5 months",
-      "instructor": "Ammad",
-      "available_seats": "15",
-      "course_fee": "12000"
+      "course_fee": "12000",
+      "created_at": "2026-09-10"
     },
     {
       "id": "3",
       "course_name": "JavaScript",
-      "course_description": "Backend",
-      "course_duration": "2.5 months",
-      "instructor": "Mahaz",
-      "available_seats": "20",
-      "course_fee": "8000"
+      "course_fee": "4000",
+      "created_at": "2026-09-25"
     },
     {
       "id": "4",
-      "course_name": "HTML & CSS",
-      "course_description": "Structure & Styling",
-      "course_duration": "1 month",
-      "instructor": "Ayaan Abbasi",
-      "available_seats": "10",
-      "course_fee": "5000"
+      "course_name": "Node.js",
+      "course_fee": "8000",
+      "created_at": "2026-10-02"
     },
     {
-      "course_name": "Computer Science",
-      "course_description": "Computer Science",
-      "course_duration": "1 week",
-      "instructor": "Ammad",
-      "available_seats": "20",
-      "course_fee": 5000,
-      "id": "de45jfjSeEM"
+      "id": "5",
+      "course_name": "HTML/CSS",
+      "course_fee": "5000",
+      "created_at": "2026-10-06"
     }
   ],
   "enrollments": [
     {
-      "student_id": "1",
-      "student_name": "Mahaz Naseem Abbasi",
-      "course_id": "3",
-      "course_name": "JavaScript",
-      "course_fee": "8000",
-      "enroll_date": "2026-10-06",
-      "status": "Active",
-      "id": "Z7JD8r352K8"
-    },
-    {
-      "student_id": "2",
-      "student_name": "Ammad Naseem Abbasi",
-      "course_id": "1",
+      "id": "1",
+      "student_name": "Mahaz",
       "course_name": "Angular",
       "course_fee": "10000",
-      "enroll_date": "2026-10-08",
-      "status": "Active",
-      "id": "BbeoaIGPFCs"
+      "enroll_date": "2026-10-05",
+      "status": "Active"
     },
     {
-      "student_id": "fhzpaIRTEHM",
-      "student_name": "Shahzad Naseem Abbasi",
-      "course_id": "3",
+      "id": "2",
+      "student_name": "Ammad",
+      "course_name": "React",
+      "course_fee": "12000",
+      "enroll_date": "2026-09-20",
+      "status": "Active"
+    },
+    {
+      "id": "3",
+      "student_name": "Shahzad",
       "course_name": "JavaScript",
-      "course_fee": "8000",
-      "enroll_date": "2026-10-09",
-      "status": "Inactive",
-      "id": "rnrDS62KphE"
+      "course_fee": "4000",
+      "enroll_date": "2026-10-01",
+      "status": "inactive"
     }
   ],
-  "payments": [
-    {
-      "enrollment_id": "Z7JD8r352K8",
-      "student_name": "Mahaz Naseem Abbasi",
-      "course_name": "JavaScript",
-      "total_fee": "8000",
-      "paid_amount": 5000,
-      "payment_method": "Online",
-      "payment_date": "2026-10-06",
-      "id": "4XtfqMFxisA"
-    },
-    {
-      "enrollment_id": "BbeoaIGPFCs",
-      "student_name": "Ammad Naseem Abbasi",
-      "course_name": "Angular",
-      "total_fee": "10000",
-      "paid_amount": 10000,
-      "payment_method": "Bank Transfer",
-      "payment_date": "2026-10-06",
-      "id": "6ZMp0SF7Srs"
-    },
-    {
-      "enrollment_id": "rnrDS62KphE",
-      "student_name": "Shahzad Naseem Abbasi",
-      "course_name": "JavaScript",
-      "total_fee": "8000",
-      "paid_amount": 8000,
-      "payment_method": "Cash",
-      "payment_date": "2026-10-09",
-      "id": "YaVG6DGCPro"
-    }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  "payments": [],
+  "settings": {
+    "monthly_enrollment_target": 5
+  }
 }

@@ -39,7 +39,7 @@ export class Dashboard implements OnInit {
     { month: 'Sep', value: 210 },
     { month: 'Oct', value: 380 },
     { month: 'Nov', value: 260 },
-    { month: 'Dec', value: 110 }
+    { month: 'Dec', value: 350 }
   ];
 
   maxSales = 400;

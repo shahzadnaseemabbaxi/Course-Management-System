@@ -62,6 +62,7 @@ showImagePreview = signal<boolean>(false);
     // Load from localStorage
     const saved = localStorage.getItem('admin_profile');
     if (saved) {
+      // ye Parse localStorage se saved data read karte waqt use hota hai.
       const data = JSON.parse(saved);
       this.profile.update(p => ({ ...p, ...data }));
     }
@@ -78,7 +79,7 @@ showImagePreview = signal<boolean>(false);
       email: this.profile().email,
       phone: this.profile().phone
     });
-      // ✅ Escape key se close
+      // ✅ Escape key se preview ko close karna k liyay
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       this.showImagePreview.set(false);
@@ -106,7 +107,7 @@ showImagePreview = signal<boolean>(false);
       return;
     }
 
-    // Type check
+    // image ki type check karta ha
     if (!file.type.startsWith('image/')) {
       this.showToastMsg('⚠ Please select an image file', 'error');
       return;
