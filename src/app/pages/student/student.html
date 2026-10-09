@@ -1,6 +1,6 @@
 <div class="students-page" [class.dark]="themeService.isDarkMode()">
 
-  <!-- ✅ Toast Notification -->
+  <!-- Toast -->
   @if (showToast()) {
     <div class="toast-popup" [class.success]="toastType() === 'success'">
       <span class="toast-text">{{ toastMessage() }}</span>
@@ -11,13 +11,10 @@
   <!-- Page Header -->
   <div class="page-header">
     <h2>Student List</h2>
-
-    <button class="add-new-btn" (click)="openModal()">
-      + Add Student
-    </button>
+    <button class="add-new-btn" (click)="openModal()">+ Add Student</button>
   </div>
 
-  <!-- Table -->
+  <!-- Table / Card View -->
   <div class="table-wrapper">
     <table>
       <thead>
@@ -34,13 +31,13 @@
       <tbody>
         @for (student of students(); track student.id) {
           <tr>
-            <td class="name-cell">{{ student.name }}</td>
-            <td>{{ student.father_name }}</td>
-            <td>{{ student.email }}</td>
-            <td>{{ student.phone }}</td>
-            <td>{{ student.address }}</td>
-            <td>{{ student.department }}</td>
-            <td>
+            <td data-label="Name" class="name-cell">{{ student.name }}</td>
+            <td data-label="Father Name">{{ student.father_name }}</td>
+<td data-label="Email"><span class="cell-value">{{ student.email }}</span></td>
+            <td data-label="Phone">{{ student.phone }}</td>
+            <td data-label="Address">{{ student.address }}</td>
+            <td data-label="Department">{{ student.department }}</td>
+            <td data-label="Actions">
               <div class="actions">
                 <button class="edit-btn" (click)="editStudent(student)">Edit</button>
                 <button class="delete-btn" (click)="deleteStudent(student.id)">Delete</button>
@@ -67,7 +64,7 @@
     </table>
   </div>
 
-  <!-- ✅ Modal Popup -->
+  <!-- Modal -->
   @if (showModal()) {
     <div class="modal-overlay" (click)="closeModal()">
       <div class="modal-box" (click)="$event.stopPropagation()">
@@ -81,11 +78,8 @@
 
           <div class="form-group">
             <label>Name *</label>
-            <input
-              placeholder="Enter student name"
-              formControlName="name"
-              [class.error]="isInvalid('name')"
-            />
+            <input placeholder="Enter student name" formControlName="name"
+              [class.error]="isInvalid('name')" />
             @if (isInvalid('name')) {
               <span class="error-msg">⚠ Name is required</span>
             }
@@ -93,11 +87,8 @@
 
           <div class="form-group">
             <label>Father Name *</label>
-            <input
-              placeholder="Enter father name"
-              formControlName="father_name"
-              [class.error]="isInvalid('father_name')"
-            />
+            <input placeholder="Enter father name" formControlName="father_name"
+              [class.error]="isInvalid('father_name')" />
             @if (isInvalid('father_name')) {
               <span class="error-msg">⚠ Father name is required</span>
             }
@@ -105,71 +96,101 @@
 
           <div class="form-group">
             <label>Email *</label>
-            <input
-              type="email"
-              placeholder="Enter email"
-              formControlName="email"
-              [class.error]="isInvalid('email')"
-            />
+            <input type="email" placeholder="Enter email" formControlName="email"
+              [class.error]="isInvalid('email')" />
             @if (isInvalid('email')) {
               <span class="error-msg">⚠ Email is required</span>
             }
           </div>
 
-          <div class="form-group">
-            <label>Phone *</label>
-            <input
-              placeholder="Enter phone"
-              formControlName="phone"
-              [class.error]="isInvalid('phone')"
-            />
-            @if (isInvalid('phone')) {
-              <span class="error-msg">⚠ Phone is required</span>
-            }
-          </div>
+        <!-- ✅ Phone with Country Code -->
+<!-- ✅ Phone with Country Code -->
+<div class="form-group">
+  <label>Phone *</label>
+
+  <div class="phone-input-group">
+
+    <!-- Country Dropdown with Flag Image -->
+    <div class="country-dropdown">
+      <button type="button" class="country-btn"
+        (click)="toggleCountryDropdown()"
+        [class.active]="showCountryDropdown()">
+        <img
+          [src]="'https://flagcdn.com/w40/' + selectedCountry().iso + '.png'"
+          [alt]="selectedCountry().name"
+          class="country-flag-img"
+        />
+        <span class="country-code">{{ selectedCountry().code }}</span>
+        <span class="arrow">▼</span>
+      </button>
+
+      @if (showCountryDropdown()) {
+        <div class="country-menu">
+          @for (country of countryOptions; track country.code) {
+            <div class="country-item" (click)="selectCountry(country)">
+              <img
+                [src]="'https://flagcdn.com/w40/' + country.iso + '.png'"
+                [alt]="country.name"
+                class="country-flag-img"
+              />
+              <span class="country-name">{{ country.name }}</span>
+              <span class="country-code">{{ country.code }}</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Phone Input -->
+    <input
+      placeholder="Enter phone number"
+      formControlName="phone"
+      class="phone-input"
+      (input)="onPhoneInput()"
+      [class.error]="isInvalid('phone') || phoneError()"
+    />
+  </div>
+
+  @if (isInvalid('phone')) {
+    <span class="error-msg">⚠ Phone is required</span>
+  }
+  @if (phoneError()) {
+    <span class="error-msg">{{ phoneError() }}</span>
+  }
+</div>
 
           <div class="form-group">
             <label>Address *</label>
-            <input
-              placeholder="Enter address"
-              formControlName="address"
-              [class.error]="isInvalid('address')"
-            />
+            <input placeholder="Enter address" formControlName="address"
+              [class.error]="isInvalid('address')" />
             @if (isInvalid('address')) {
               <span class="error-msg">⚠ Address is required</span>
             }
           </div>
 
           <div class="form-group">
-  <label>Department *</label>
+            <label>Department *</label>
+            <div class="dept-dropdown">
+              <button type="button" class="dept-btn"
+                (click)="toggleDeptDropdown()"
+                [class.active]="showDeptDropdown()"
+                [class.error]="isInvalid('department')">
+                <span>{{ selectedDeptLabel() || 'Select Department' }}</span>
+                <span class="arrow">▼</span>
+              </button>
 
-  <div class="dept-dropdown">
-    <button
-      type="button"
-      class="dept-btn"
-      (click)="toggleDeptDropdown()"
-      [class.active]="showDeptDropdown()"
-      [class.error]="isInvalid('department')"
-    >
-      <span>{{ selectedDeptLabel() || 'Select Department' }}</span>
-      <span class="arrow">▼</span>
-    </button>
-
-    @if (showDeptDropdown()) {
-      <div class="dept-menu">
-        @for (dept of departmentOptions; track dept) {
-          <div class="dept-item" (click)="selectDept(dept)">
-            {{ dept }}
+              @if (showDeptDropdown()) {
+                <div class="dept-menu">
+                  @for (dept of departmentOptions; track dept) {
+                    <div class="dept-item" (click)="selectDept(dept)">{{ dept }}</div>
+                  }
+                </div>
+              }
+            </div>
+            @if (isInvalid('department')) {
+              <span class="error-msg">⚠ Department is required</span>
+            }
           </div>
-        }
-      </div>
-    }
-  </div>
-
-  @if (isInvalid('department')) {
-    <span class="error-msg">⚠ Department is required</span>
-  }
-</div>
 
           <div class="modal-actions">
             <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>

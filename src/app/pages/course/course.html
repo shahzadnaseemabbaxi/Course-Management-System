@@ -25,39 +25,38 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
-        @for (course of courses(); track course.id) {
-          <tr>
-            <td class="name-cell">{{ course.course_name }}</td>
-            <td>{{ course.course_description }}</td>
-            <td>{{ course.course_duration }}</td>
-            <td>{{ course.available_seats }}</td>
-            <td>{{ course.instructor }}</td>
-            <td>
-              <div class="actions">
-                <button class="edit-btn" (click)="editCourse(course)">Edit</button>
-                <button class="delete-btn" (click)="deleteCourse(course.id)">Delete</button>
-              </div>
-            </td>
-          </tr>
-        }
+<tbody>
+  @for (course of courses(); track course.id) {
+    <tr>
+      <td data-label="Course Name" class="name-cell">{{ course.course_name }}</td>
+      <td data-label="Description">{{ course.course_description }}</td>
+      <td data-label="Duration">{{ course.course_duration }}</td>
+      <td data-label="Seats">{{ course.available_seats }}</td>
+      <td data-label="Instructor">{{ course.instructor }}</td>
+      <td data-label="Actions">
+        <div class="actions">
+          <button class="edit-btn" (click)="editCourse(course)">Edit</button>
+          <button class="delete-btn" (click)="deleteCourse(course.id)">Delete</button>
+        </div>
+      </td>
+    </tr>
+  }
 
-        <!-- ✅ Empty State -->
-        @if (courses().length === 0) {
-          <tr>
-            <td colspan="6" class="empty-state">
-              <div class="empty-content">
-                <div class="empty-icon">📚</div>
-                <h3>No Courses Yet</h3>
-                <p>Click the button below to add your first course</p>
-                <button class="add-first-btn" (click)="openModal()">
-                  + Add First Course
-                </button>
-              </div>
-            </td>
-          </tr>
-        }
-      </tbody>
+  @if (courses().length === 0) {
+    <tr>
+      <td colspan="6" class="empty-state">
+        <div class="empty-content">
+          <div class="empty-icon">📚</div>
+          <h3>No Courses Yet</h3>
+          <p>Click the button below to add your first course</p>
+          <button class="add-first-btn" (click)="openModal()">
+            + Add First Course
+          </button>
+        </div>
+      </td>
+    </tr>
+  }
+</tbody>
     </table>
   </div>
 

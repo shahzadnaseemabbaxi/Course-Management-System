@@ -1,10 +1,7 @@
 <nav class="navbar" [class.dark]="themeService.isDarkMode()">
   <div class="container-fluid">
-
     <!-- ✅ Sirf hamburger button add kiya -->
-    <button class="hamburger-btn" (click)="onToggleSidebar()" title="Menu">
-      ☰
-    </button>
+    <button class="hamburger-btn" (click)="onToggleSidebar()" title="Menu">☰</button>
 
     <!-- Search form (left side) -->
     <form class="d-flex" role="search">
@@ -14,7 +11,6 @@
 
     <!-- Right side: Theme toggle + Admin dropdown -->
     <div class="right-side">
-
       <!-- 🌙 / ☀️ Toggle Button -->
       <button class="theme-toggle" (click)="toggleTheme()" title="Toggle Theme">
         {{ themeService.isDarkMode() ? '☀️' : '🌙' }}
@@ -22,9 +18,14 @@
 
       <!-- Admin dropdown -->
       <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-  <i class="fa-solid fa-user me-2"></i><span>Admin</span>
-</button>
+        <button
+          class="btn dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-user me-2"></i><span>Admin</span>
+        </button>
         <ul class="dropdown-menu dropdown-menu-end">
           <li>
             <a class="dropdown-item" routerLink="/settings">⚙️ Settings</a>
@@ -32,13 +33,14 @@
           <li>
             <a class="dropdown-item" routerLink="/admin-profile">👤 Admin Profile</a>
           </li>
-          <li><hr class="dropdown-divider"></li>
+          <li><hr class="dropdown-divider" /></li>
           <li>
-            <a class="dropdown-item" (click)="logout()" style="cursor: pointer; color: #ef4444;">🚪 Logout</a>
+            <a class="dropdown-item" (click)="logout()" style="cursor: pointer; color: #ef4444"
+              >🚪 Logout</a
+            >
           </li>
         </ul>
       </div>
-
     </div>
   </div>
 </nav>

@@ -1,13 +1,13 @@
 {
   "students": [
     {
-      "id": "1",
       "name": "Mahaz Naseem Abbasi",
       "father_name": "Muhammad Naseem",
       "email": "abbasimahaz562@gmail.com",
       "phone": "03480526933",
       "address": "Abbottabad",
-      "department": "Computer Science"
+      "department": "Software Engineering",
+      "id": "1"
     },
     {
       "id": "2",
@@ -26,6 +26,15 @@
       "address": "Small Industry Road Mandian Abbottabad",
       "department": "Computer Science",
       "id": "o5YAR7M02v8"
+    },
+    {
+      "name": "Shahzad Naseem Abbasi",
+      "father_name": "dc\\vf",
+      "email": "shahzadnaseemabbasi@gmail.com",
+      "phone": "+92 3288653097",
+      "address": "Small Industry Road Mandian Abbottabad",
+      "department": "Computer Science",
+      "id": "fhzpaIRTEHM"
     }
   ],
   "courses": [
@@ -95,6 +104,16 @@
       "enroll_date": "2026-10-08",
       "status": "Active",
       "id": "BbeoaIGPFCs"
+    },
+    {
+      "student_id": "fhzpaIRTEHM",
+      "student_name": "Shahzad Naseem Abbasi",
+      "course_id": "3",
+      "course_name": "JavaScript",
+      "course_fee": "8000",
+      "enroll_date": "2026-10-09",
+      "status": "Inactive",
+      "id": "rnrDS62KphE"
     }
   ],
   "payments": [
@@ -113,10 +132,20 @@
       "student_name": "Ammad Naseem Abbasi",
       "course_name": "Angular",
       "total_fee": "10000",
-      "paid_amount": 8000,
+      "paid_amount": 10000,
       "payment_method": "Bank Transfer",
       "payment_date": "2026-10-06",
       "id": "6ZMp0SF7Srs"
+    },
+    {
+      "enrollment_id": "rnrDS62KphE",
+      "student_name": "Shahzad Naseem Abbasi",
+      "course_name": "JavaScript",
+      "total_fee": "8000",
+      "paid_amount": 8000,
+      "payment_method": "Cash",
+      "payment_date": "2026-10-09",
+      "id": "YaVG6DGCPro"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

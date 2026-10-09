@@ -25,41 +25,41 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
-        @for (e of enrollments(); track e.id) {
-          <tr>
-            <td>E{{ e.id }}</td>
-            <td class="name-cell">{{ e.student_name }}</td>
-            <td>{{ e.course_name }}</td>
-            <td>Rs. {{ e.course_fee }}</td>
-            <td>{{ e.enroll_date }}</td>
-            <td>
-              <span class="status-badge" [class.active]="e.status === 'Active'">
-                {{ e.status }}
-              </span>
-            </td>
-            <td>
-              <div class="actions">
-                <button class="edit-btn" (click)="editEnrollment(e)">Edit</button>
-                <button class="delete-btn" (click)="deleteEnrollment(e.id)">Delete</button>
-              </div>
-            </td>
-          </tr>
-        }
+    <tbody>
+  @for (e of enrollments(); track e.id) {
+    <tr>
+      <td data-label="ID">E{{ e.id }}</td>
+      <td data-label="Student" class="name-cell">{{ e.student_name }}</td>
+      <td data-label="Course">{{ e.course_name }}</td>
+      <td data-label="Fee">Rs. {{ e.course_fee }}</td>
+      <td data-label="Date">{{ e.enroll_date }}</td>
+      <td data-label="Status">
+        <span class="status-badge" [class.active]="e.status === 'Active'">
+          {{ e.status }}
+        </span>
+      </td>
+      <td data-label="Actions">
+        <div class="actions">
+          <button class="edit-btn" (click)="editEnrollment(e)">Edit</button>
+          <button class="delete-btn" (click)="deleteEnrollment(e.id)">Delete</button>
+        </div>
+      </td>
+    </tr>
+  }
 
-        @if (enrollments().length === 0) {
-          <tr>
-            <td colspan="7" class="empty-state">
-              <div class="empty-content">
-                <div class="empty-icon">📝</div>
-                <h3>No Enrollments Yet</h3>
-                <p>Enroll a student to a course</p>
-                <button class="add-first-btn" (click)="openModal()">+ New Enrollment</button>
-              </div>
-            </td>
-          </tr>
-        }
-      </tbody>
+  @if (enrollments().length === 0) {
+    <tr>
+      <td colspan="7" class="empty-state">
+        <div class="empty-content">
+          <div class="empty-icon">📝</div>
+          <h3>No Enrollments Yet</h3>
+          <p>Enroll a student to a course</p>
+          <button class="add-first-btn" (click)="openModal()">+ New Enrollment</button>
+        </div>
+      </td>
+    </tr>
+  }
+</tbody>
     </table>
   </div>
 

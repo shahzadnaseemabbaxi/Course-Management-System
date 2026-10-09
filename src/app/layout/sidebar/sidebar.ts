@@ -1,4 +1,4 @@
-import { Component, signal, output, input } from '@angular/core';
+import { Component, output, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ThemeService } from '../../services/theme';
@@ -11,6 +11,9 @@ import { ThemeService } from '../../services/theme';
   templateUrl: './sidebar.html',
 })
 export class Sidebar {
+
+  // ✅ Collapsed input — icons only state
+  collapsed = input<boolean>(false);
 
   // ✅ Output — mobile pe link click hone pe parent ko batane ke liye
   linkClicked = output<void>();

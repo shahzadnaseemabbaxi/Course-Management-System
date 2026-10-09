@@ -1,5 +1,5 @@
 /* =========================
-   Fees Page
+   Fees Page — Base
 ========================= */
 .fees-page {
   padding: 24px;
@@ -21,15 +21,19 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  gap: 12px;
 }
 
 .page-header h2 {
   font-size: 24px;
   font-weight: 700;
   margin: 0;
+  color: #1a1a2e;
 }
 
-.fees-page.dark .page-header h2 { color: #ffffff; }
+.fees-page.dark .page-header h2 {
+  color: #ffffff;
+}
 
 .add-new-btn {
   background: #10b981;
@@ -42,14 +46,14 @@
   cursor: pointer;
   transition: 0.2s;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  white-space: nowrap;
 }
 
 .add-new-btn:hover {
   background: #059669;
-  transform: translateY(-1px);
 }
 
-/* Table */
+/* Table Wrapper */
 .table-wrapper {
   background: #ffffff;
   border-radius: 12px;
@@ -63,20 +67,32 @@
   border-color: #2a2a3a;
 }
 
-table { width: 100%; border-collapse: collapse; }
+/* ✅ Table — flexible, no scroll */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
 
-thead { background: #f9fafb; }
-.fees-page.dark thead { background: #1a1a28; }
+thead {
+  background: #f9fafb;
+}
+
+.fees-page.dark thead {
+  background: #1a1a28;
+}
 
 th {
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 8px;
   font-size: 12px;
   font-weight: 600;
   color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   border-bottom: 1px solid #e5e7eb;
+  word-break: break-word;
+  overflow: hidden;
 }
 
 .fees-page.dark th {
@@ -85,11 +101,13 @@ th {
 }
 
 td {
-  padding: 16px;
+  padding: 16px 8px;
   text-align: center;
   font-size: 14px;
   color: #1a1a2e;
   border-bottom: 1px solid #f3f4f6;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .fees-page.dark td {
@@ -97,12 +115,17 @@ td {
   border-bottom-color: #1f1f2e;
 }
 
-tbody tr:last-child td { border-bottom: none; }
-tbody tr:hover td { background: #f9fafb; }
-.fees-page.dark tbody tr:hover td { background: #1a1a28; }
+tbody tr:last-child td {
+  border-bottom: none;
+}
 
-.name-cell { font-weight: 600; }
-.fees-page.dark .name-cell { color: #ffffff; }
+.name-cell {
+  font-weight: 600;
+}
+
+.fees-page.dark .name-cell {
+  color: #ffffff;
+}
 
 /* Status Badges */
 .status-badge {
@@ -117,6 +140,7 @@ tbody tr:hover td { background: #f9fafb; }
   background: #d1fae5;
   color: #065f46;
 }
+
 .fees-page.dark .status-badge.paid {
   background: #064e3b;
   color: #6ee7b7;
@@ -126,6 +150,7 @@ tbody tr:hover td { background: #f9fafb; }
   background: #fef3c7;
   color: #92400e;
 }
+
 .fees-page.dark .status-badge.partial {
   background: #78350f;
   color: #fcd34d;
@@ -135,29 +160,49 @@ tbody tr:hover td { background: #f9fafb; }
   background: #fee2e2;
   color: #991b1b;
 }
+
 .fees-page.dark .status-badge.unpaid {
   background: #7f1d1d;
   color: #fca5a5;
 }
 
-/* Buttons */
-.actions { display: flex; gap: 6px; justify-content: center; }
+/* Action Buttons */
+.actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 .edit-btn {
-  background: #465fff; color: #fff; border: none;
-  padding: 7px 14px; border-radius: 6px; font-size: 12px;
-  font-weight: 600; cursor: pointer;
+  background: #465fff;
+  color: #fff;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
 }
+
 .edit-btn:hover { background: #3548d4; }
 
 .delete-btn {
-  background: #ef4444; color: #fff; border: none;
-  padding: 7px 14px; border-radius: 6px; font-size: 12px;
-  font-weight: 600; cursor: pointer;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
 }
+
 .delete-btn:hover { background: #dc2626; }
 
-/* Empty */
+/* Empty State */
 .empty-state { padding: 60px 20px !important; }
 .empty-content { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .empty-icon { font-size: 48px; opacity: 0.6; }
@@ -167,8 +212,8 @@ tbody tr:hover td { background: #f9fafb; }
 .fees-page.dark .empty-content p { color: #9ca3af; }
 .add-first-btn {
   background: #10b981; color: #fff; border: none;
-  padding: 10px 24px; border-radius: 8px; font-weight: 600;
-  cursor: pointer;
+  padding: 10px 24px; border-radius: 8px;
+  font-weight: 600; cursor: pointer;
 }
 .add-first-btn:hover { background: #059669; }
 
@@ -180,35 +225,28 @@ tbody tr:hover td { background: #f9fafb; }
   display: flex; align-items: center; justify-content: center;
   z-index: 1000; padding: 20px;
 }
-
 .modal-box {
   background: #ffffff; border-radius: 16px;
   max-width: 700px; width: 100%;
   max-height: 90vh; overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
-
 .fees-page.dark .modal-box { background: #14141f; }
 
 .modal-header {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 20px 24px;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 20px 24px; border-bottom: 1px solid #e5e7eb;
 }
-
 .fees-page.dark .modal-header { border-bottom-color: #2a2a3a; }
-
 .modal-header h3 { font-size: 18px; font-weight: 700; margin: 0; }
 .fees-page.dark .modal-header h3 { color: #ffffff; }
 
 .modal-close {
   background: transparent; border: none; font-size: 20px;
-  color: #6b7280; cursor: pointer; padding: 4px 10px;
-  border-radius: 6px;
+  color: #6b7280; cursor: pointer; padding: 4px 10px; border-radius: 6px;
 }
 .modal-close:hover { background: #f3f4f6; color: #ef4444; }
 
-/* Modal Form */
 .modal-form {
   padding: 24px;
   display: grid;
@@ -218,13 +256,7 @@ tbody tr:hover td { background: #f9fafb; }
 
 .form-group { display: flex; flex-direction: column; gap: 6px; }
 .form-group.full-width { grid-column: 1 / -1; }
-
-.form-group label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #374151;
-}
-
+.form-group label { font-size: 13px; font-weight: 600; color: #374151; }
 .fees-page.dark .form-group label { color: #d1d5db; }
 
 .form-group input,
@@ -251,6 +283,12 @@ tbody tr:hover td { background: #f9fafb; }
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
+.form-group input.error,
+.form-group select.error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
 .form-group input[readonly] {
   background: #f9fafb;
   color: #6b7280;
@@ -262,126 +300,313 @@ tbody tr:hover td { background: #f9fafb; }
   color: #9ca3af;
 }
 
-/* Custom Dropdown */
-.custom-dropdown { position: relative; }
-
-.dropdown-btn {
-  width: 100%;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 14px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #1a1a2e;
-  font-size: 14px; cursor: pointer; text-align: left;
-}
-
-.fees-page.dark .dropdown-btn {
-  background: #1f1f2e;
-  border-color: #2a2a3a;
-  color: #e4e4e7;
-}
-
-.dropdown-btn:hover,
-.dropdown-btn.active {
-  border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
-}
-
-.dropdown-btn.error {
-  border-color: #ef4444 !important;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
-}
-
-.dropdown-btn .arrow { font-size: 10px; color: #6b7280; }
-
-.dropdown-menu {
-  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-height: 200px; overflow-y: auto;
-  z-index: 50;
-}
-
-.fees-page.dark .dropdown-menu {
-  background: #1f1f2e;
-  border-color: #2a2a3a;
-}
-
-.dropdown-item {
-  padding: 10px 14px; cursor: pointer;
-  font-size: 14px; color: #1a1a2e;
-}
-
-.fees-page.dark .dropdown-item { color: #e4e4e7; }
-.dropdown-item:hover { background: #f3f4f6; color: #10b981; }
-.fees-page.dark .dropdown-item:hover { background: #2a2a3a; }
-
-/* Error */
 .error-msg {
-  font-size: 12px; color: #ef4444;
-  margin-top: 4px; font-weight: 500;
+  font-size: 12px;
+  color: #ef4444;
+  font-weight: 500;
 }
 
-/* Modal Actions */
 .modal-actions {
   grid-column: 1 / -1;
   display: flex; gap: 10px;
   justify-content: flex-end;
-  margin-top: 10px;
   padding-top: 16px;
   border-top: 1px solid #e5e7eb;
 }
-
 .fees-page.dark .modal-actions { border-top-color: #2a2a3a; }
 
 .save-btn {
   background: #10b981; color: #fff; border: none;
   padding: 10px 24px; border-radius: 8px;
-  font-size: 14px; font-weight: 600; cursor: pointer;
+  font-weight: 600; cursor: pointer;
 }
 .save-btn:hover { background: #059669; }
 
 .cancel-btn {
   background: #6b7280; color: #fff; border: none;
   padding: 10px 20px; border-radius: 8px;
-  font-size: 14px; font-weight: 600; cursor: pointer;
+  font-weight: 600; cursor: pointer;
 }
 .cancel-btn:hover { background: #4b5563; }
 
 /* Toast */
 .toast-popup {
   position: fixed; top: 90px; right: 24px;
-  background: #ffffff;
-  border-left: 4px solid #ef4444;
-  border-radius: 10px;
-  padding: 14px 18px;
+  background: #ffffff; border-left: 4px solid #ef4444;
+  border-radius: 10px; padding: 14px 18px;
   display: flex; align-items: center; gap: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  z-index: 2000;
-  min-width: 280px;
+  z-index: 2000; min-width: 280px;
 }
-
 .toast-popup.success { border-left-color: #10b981; }
 .fees-page.dark .toast-popup { background: #1f1f2e; }
-
 .toast-text { flex: 1; font-size: 14px; font-weight: 500; }
 .fees-page.dark .toast-text { color: #e4e4e7; }
-
 .toast-close {
   background: transparent; border: none;
-  color: #9ca3af; font-size: 14px;
-  cursor: pointer; padding: 2px 8px; border-radius: 4px;
+  color: #9ca3af; cursor: pointer; padding: 2px 8px;
 }
-.toast-close:hover { background: #f3f4f6; color: #ef4444; }
 
-/* Responsive */
-@media (max-width: 768px) {
+
+/* =========================
+   RESPONSIVE — 1024px (Tablet)
+========================= */
+@media (max-width: 1024px) {
   .fees-page { padding: 16px; }
-  .page-header { flex-direction: column; gap: 12px; align-items: stretch; }
-  .table-wrapper { overflow-x: auto; }
-  table { min-width: 900px; }
+
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .page-header h2 { font-size: 20px; }
+
+  .add-new-btn { width: 100%; }
+
+  th, td {
+    padding: 12px 6px;
+    font-size: 12px;
+  }
+
+  th {
+    font-size: 10px;
+    letter-spacing: 0;
+  }
+
+  .edit-btn, .delete-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
+
+
+/* =========================
+   RESPONSIVE — 768px (Tablet Small)
+========================= */
+@media (max-width: 768px) {
   .modal-form { grid-template-columns: 1fr; }
+}
+
+
+/* =========================
+   RESPONSIVE — 500px (Mobile Card View)
+========================= */
+@media (max-width: 500px) {
+
+  .fees-page { padding: 12px; }
+
+  .page-header h2 { font-size: 18px; }
+
+  /* Table wrapper reset */
+  .table-wrapper {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  /* Table → Block */
+  table {
+    display: block;
+    width: 100%;
+    table-layout: auto;
+  }
+
+  thead { display: none; }
+  tbody { display: block; }
+
+  /* Each row = Card */
+  tbody tr {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .fees-page.dark tbody tr {
+    background: #14141f;
+    border-color: #2a2a3a;
+  }
+
+  /* Each cell = Row */
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13px;
+    text-align: right;
+    gap: 12px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+
+  .fees-page.dark td {
+    border-bottom-color: #1f1f2e;
+  }
+
+  td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  /* Label */
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 11px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+    flex-shrink: 0;
+    min-width: 75px;
+    max-width: 100px;
+  }
+
+  .fees-page.dark td::before {
+    color: #9ca3af;
+  }
+
+  .name-cell {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  /* Actions */
+  .actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .edit-btn, .delete-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+    flex: 1;
+    max-width: 100px;
+  }
+
+  /* Empty as card */
+  .empty-state {
+    display: block !important;
+    padding: 40px 16px !important;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+  }
+
+  .fees-page.dark .empty-state {
+    background: #14141f;
+    border-color: #2a2a3a;
+  }
+
+  .empty-state::before { display: none; }
+
+  .empty-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .empty-icon { font-size: 40px; }
+  .empty-content h3 { font-size: 16px; }
+  .empty-content p { font-size: 13px; margin-bottom: 12px; }
+
+  .add-first-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+    width: 100%;
+  }
+
+  /* Modal */
+  .modal-box {
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+
+  .modal-header { padding: 16px; }
+  .modal-header h3 { font-size: 16px; }
+  .modal-form { padding: 16px; gap: 14px; }
+
+  .save-btn, .cancel-btn {
+    flex: 1;
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  /* Toast bottom */
+  .toast-popup {
+    top: auto;
+    bottom: 20px;
+    right: 12px;
+    left: 12px;
+    min-width: auto;
+    max-width: none;
+  }
+}
+
+
+/* =========================
+   RESPONSIVE — 380px (Very Small)
+========================= */
+@media (max-width: 380px) {
+
+  .fees-page { padding: 8px; }
+
+  .page-header h2 { font-size: 16px; }
+
+  .add-new-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  tbody tr {
+    padding: 12px 10px;
+    border-radius: 10px;
+  }
+
+  td {
+    font-size: 12px;
+    padding: 6px 0;
+    gap: 8px;
+  }
+
+  td::before {
+    font-size: 10px;
+    min-width: 65px;
+    max-width: 80px;
+  }
+
+  .name-cell { font-size: 13px; }
+
+  .edit-btn, .delete-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .modal-form { padding: 12px; gap: 12px; }
+
+  .modal-form input {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .empty-icon { font-size: 36px; }
+  .empty-content h3 { font-size: 14px; }
+  .empty-content p { font-size: 12px; }
+
+  .toast-popup {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
 }

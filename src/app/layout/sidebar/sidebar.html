@@ -1,7 +1,15 @@
-<aside class="sidebar" [class.dark]="themeService.isDarkMode()">
+<aside
+  class="sidebar"
+  [class.dark]="themeService.isDarkMode()"
+  [class.collapsed]="collapsed()"
+>
 
   <div class="sidebar-header">
-    <h1>Course<br />Management<br />System</h1>
+    @if (!collapsed()) {
+      <h1>Course<br />Management<br />System</h1>
+    } @else {
+      <h1 class="mini-logo">CMS</h1>
+    }
   </div>
 
   <nav class="sidebar-nav">
@@ -11,9 +19,12 @@
         [routerLink]="item.route"
         routerLinkActive="active"
         (click)="onLinkClick()"
+        [title]="collapsed() ? item.name : ''"
       >
         <span class="nav-icon">{{ item.icon }}</span>
-        <span class="nav-text">{{ item.name }}</span>
+        @if (!collapsed()) {
+          <span class="nav-text">{{ item.name }}</span>
+        }
       </a>
     }
   </nav>

@@ -26,47 +26,47 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
-        @for (p of payments(); track p.id) {
-          <tr>
-            <td>P{{ p.id }}</td>
-            <td class="name-cell">{{ p.student_name || p.enrollment_id }}</td>
-            <td>{{ p.course_name || '-' }}</td>
-            <td>Rs. {{ p.paid_amount }}</td>
-            <td>{{ p.payment_date }}</td>
-            <td>{{ p.payment_method }}</td>
-            <td>
-              <span class="status-badge"
-                [class.paid]="getStatus(p.paid_amount, p.total_fee) === 'Paid'"
-                [class.partial]="getStatus(p.paid_amount, p.total_fee) === 'Partial'"
-                [class.unpaid]="getStatus(p.paid_amount, p.total_fee) === 'Unpaid'">
-                {{ getStatus(p.paid_amount, p.total_fee) }}
-              </span>
-            </td>
-            <td>
-              <div class="actions">
-                <button class="edit-btn" (click)="editPayment(p)">Edit</button>
-                <button class="delete-btn" (click)="deletePayment(p.id)">Delete</button>
-              </div>
-            </td>
-          </tr>
-        }
+<tbody>
+  @for (p of payments(); track p.id) {
+    <tr>
+      <td data-label="Payment ID">P{{ p.id }}</td>
+      <td data-label="Student" class="name-cell">{{ p.student_name || p.enrollment_id }}</td>
+      <td data-label="Course">{{ p.course_name || '-' }}</td>
+      <td data-label="Paid">Rs. {{ p.paid_amount }}</td>
+      <td data-label="Date">{{ p.payment_date }}</td>
+      <td data-label="Method">{{ p.payment_method }}</td>
+      <td data-label="Status">
+        <span class="status-badge"
+          [class.paid]="getStatus(p.paid_amount, p.total_fee) === 'Paid'"
+          [class.partial]="getStatus(p.paid_amount, p.total_fee) === 'Partial'"
+          [class.unpaid]="getStatus(p.paid_amount, p.total_fee) === 'Unpaid'">
+          {{ getStatus(p.paid_amount, p.total_fee) }}
+        </span>
+      </td>
+      <td data-label="Actions">
+        <div class="actions">
+          <button class="edit-btn" (click)="editPayment(p)">Edit</button>
+          <button class="delete-btn" (click)="deletePayment(p.id)">Delete</button>
+        </div>
+      </td>
+    </tr>
+  }
 
-        @if (payments().length === 0) {
-          <tr>
-            <td colspan="8" class="empty-state">
-              <div class="empty-content">
-                <div class="empty-icon">💰</div>
-                <h3>No Payments Yet</h3>
-                <p>Submit a payment to see it here</p>
-                <button class="add-first-btn" (click)="openModal()">
-                  + Submit Payment
-                </button>
-              </div>
-            </td>
-          </tr>
-        }
-      </tbody>
+  @if (payments().length === 0) {
+    <tr>
+      <td colspan="8" class="empty-state">
+        <div class="empty-content">
+          <div class="empty-icon">💰</div>
+          <h3>No Payments Yet</h3>
+          <p>Submit a payment to see it here</p>
+          <button class="add-first-btn" (click)="openModal()">
+            + Submit Payment
+          </button>
+        </div>
+      </td>
+    </tr>
+  }
+</tbody>
     </table>
   </div>
 
@@ -81,9 +81,7 @@
 
         <form [formGroup]="form" (ngSubmit)="savePayment()" class="modal-form">
 
-          <!-- Enrollment Dropdown -->
-          <div class="form-group full-width">
-
+       <!-- Enrollment Dropdown -->
 <div class="form-group full-width">
   <label>Enrollment *</label>
 
@@ -103,15 +101,9 @@
   </select>
 
   @if (isInvalid('enrollment_id')) {
-    <span class="error-msg">
-      ⚠ Enrollment required
-    </span>
+    <span class="error-msg">⚠ Enrollment required</span>
   }
 </div>
-            @if (isInvalid('enrollment_id')) {
-              <span class="error-msg">⚠ Enrollment required</span>
-            }
-          </div>
 
           <div class="form-group">
             <label>Total Course Fee</label>

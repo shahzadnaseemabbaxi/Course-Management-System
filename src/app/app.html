@@ -2,17 +2,18 @@
 
 <div class="app-body">
 
-  <!-- Overlay (mobile) -->
-  @if (sidebarOpen()) {
+  <!-- ✅ Overlay — sirf mobile pe jab expanded ho -->
+  @if (isMobile() && sidebarExpanded()) {
     <div class="sidebar-overlay" (click)="closeSidebar()"></div>
   }
 
-  <!-- Sidebar -->
-  <div class="sidebar-wrapper" [class.open]="sidebarOpen()">
-    <app-sidebar (linkClicked)="closeSidebar()"></app-sidebar>
+  <div class="sidebar-wrapper" [class.expanded]="sidebarExpanded()">
+    <app-sidebar
+      [collapsed]="isCollapsed()"
+      (linkClicked)="closeSidebar()">
+    </app-sidebar>
   </div>
 
-  <!-- Main Content -->
   <main class="main-content" [class.dark]="themeService.isDarkMode()">
     <router-outlet></router-outlet>
   </main>
