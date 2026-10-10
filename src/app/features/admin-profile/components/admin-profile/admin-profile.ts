@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ThemeService } from '../../core/services/theme';
+import { ThemeService } from '../../../../core/services/theme';
 
 @Component({
   selector: 'app-admin-profile',

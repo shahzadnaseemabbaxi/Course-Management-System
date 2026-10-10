@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CoursesService } from '../../core/services/courses.service';
-import { ThemeService } from '../../core/services/theme';
+import { CoursesService } from '../../../../core/services/courses.service';
+import { ThemeService } from '../../../../core/services/theme';
 
 @Component({
   selector: 'app-course',

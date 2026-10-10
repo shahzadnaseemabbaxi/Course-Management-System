@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { Student } from './pages/student/student';
-import { Enrollment } from './pages/enrollment/enrollment';
-import { Fees } from './pages/fees/fees';
 import { Dashboard } from './features/dashboard/components/dashboard/dashboard';
-import { Course } from './pages/course/course';
-import { Setting } from './pages/setting/setting';
-import { AdminProfile } from './pages/admin-profile/admin-profile';
+import { Setting } from './features/setting/components/setting/setting';
+import { AdminProfile } from './features/admin-profile/components/admin-profile/admin-profile';
+import { Course } from './features/courses/components/course/course';
+import { Enrollment } from './features/enrollment/components/enrollment/enrollment';
+import { Fees } from './features/fees/components/fees/fees';
+import { Student } from './features/student/components/student/student';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
