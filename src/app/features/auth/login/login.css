@@ -1,0 +1,145 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-card {
+  background: #14141f;
+  border: 1px solid #2a2a3a;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo-icon {
+  font-size: 60px;
+  margin-bottom: 16px;
+}
+
+.logo-section h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.logo-section p {
+  color: #9ca3af;
+  font-size: 14px;
+  margin: 0;
+}
+
+.login-options {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-option {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid #2a2a3a;
+  border-radius: 14px;
+  background: #1f1f2e;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.login-option:hover {
+  transform: translateY(-4px);
+  border-color: #10b981;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+}
+
+.admin-option:hover {
+  border-color: #465fff;
+  box-shadow: 0 10px 30px rgba(70, 95, 255, 0.2);
+}
+
+.option-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: #2a2a3a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.login-option:hover .option-icon {
+  background: #10b981;
+}
+
+.admin-option:hover .option-icon {
+  background: #465fff;
+}
+
+.option-info { flex: 1; }
+
+.option-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.option-info p {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.option-arrow {
+  font-size: 20px;
+  color: #6b7280;
+  transition: 0.3s;
+}
+
+.login-option:hover .option-arrow {
+  color: #10b981;
+  transform: translateX(4px);
+}
+
+.admin-option:hover .option-arrow {
+  color: #465fff;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #2a2a3a;
+}
+
+.footer p {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+@media (max-width: 500px) {
+  .login-card { padding: 24px; }
+  .logo-section h1 { font-size: 20px; }
+  .option-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+}

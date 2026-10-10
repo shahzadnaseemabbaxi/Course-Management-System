@@ -1,44 +1,69 @@
 {
-  "students": [
+  "users": [
     {
       "id": "1",
-      "name": "Mahaz Naseem Abbasi",
-      "father_name": "Muhammad Naseem",
-      "email": "abbasimahaz562@gmail.com",
-      "phone": "+92 03480526933",
-      "address": "Abbottabad",
-      "department": "Computer Science",
-      "created_at": "2026-10-05"
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "name": "Shahzad Naseem",
+      "email": "admin@cms.com",
+      "student_id": null
     },
     {
       "id": "2",
-      "name": "Ammad Naseem Abbasi",
-      "father_name": "Muhammad Naseem",
-      "email": "abbasiammad562@gmail.com",
-      "phone": "+92 03411923376",
-      "address": "Abbottabad",
-      "department": "Artificial Intelligence",
-      "created_at": "2026-09-15"
+      "username": "mahaz",
+      "password": "mahaz123",
+      "role": "student",
+      "name": "Mahaz Naseem Abbasi",
+      "email": "abbasimahaz562@gmail.com",
+      "student_id": "1"
     },
     {
       "id": "3",
+      "username": "ammad",
+      "password": "ammad123",
+      "role": "student",
+      "name": "Ammad Naseem Abbasi",
+      "email": "abbasiammad562@gmail.com",
+      "student_id": "2"
+    }
+  ],
+  "students": [
+    {
+      "name": "Mahaz Naseem Abbasi",
+      "father_name": "Muhammad Naseem",
+      "email": "abbasimahaz562@gmail.com",
+      "phone": "+92 3480526933",
+      "address": "Abbottabad",
+      "department": "Computer Science",
+      "id": "1"
+    },
+    {
+      "name": "Ammad Naseem Abbasi",
+      "father_name": "Muhammad Naseem",
+      "email": "abbasiammad562@gmail.com",
+      "phone": "+92 3411923376",
+      "address": "Abbottabad",
+      "department": "Artificial Intelligence",
+      "id": "2"
+    },
+    {
       "name": "Shahzad Naseem Abbasi",
       "father_name": "Muhammad Naseem",
       "email": "shahzadnaseemabbasi@gmail.com",
-      "phone": "+92 03288653097",
+      "phone": "+92 3288653097",
       "address": "Abbottabad",
       "department": "Computer Science",
-      "created_at": "2026-09-20"
+      "id": "3"
     },
     {
-      "id": "4",
       "name": "Ali Khan",
       "father_name": "Ahmed Khan",
       "email": "ali@gmail.com",
-      "phone": "+92 03001234567",
+      "phone": "+92 3001234567",
       "address": "Islamabad",
       "department": "Software Engineering",
-      "created_at": "2026-10-01"
+      "id": "4"
     }
   ],
   "courses": [
@@ -46,31 +71,51 @@
       "id": "1",
       "course_name": "Angular",
       "course_fee": "10000",
-      "created_at": "2026-10-03"
+      "created_at": "2026-10-03",
+      "course_duration": "3 months",
+      "available_seats": "20",
+      "instructor": "John Doe",
+      "course_description": "Learn Angular from scratch and build dynamic web applications."
     },
     {
       "id": "2",
       "course_name": "React",
       "course_fee": "12000",
-      "created_at": "2026-09-10"
+      "created_at": "2026-09-10",
+      "course_duration": "3 months",
+      "available_seats": "20",
+      "instructor": "Jane Smith",
+      "course_description": "Learn React from scratch and build modern web applications."
     },
     {
       "id": "3",
       "course_name": "JavaScript",
       "course_fee": "4000",
-      "created_at": "2026-09-25"
+      "created_at": "2026-09-25",
+      "course_duration": "2 months",
+      "available_seats": "25",
+      "instructor": "Bob Johnson",
+      "course_description": "Learn JavaScript from scratch and build interactive web applications."
     },
     {
       "id": "4",
       "course_name": "Node.js",
       "course_fee": "8000",
-      "created_at": "2026-10-02"
+      "created_at": "2026-10-02",
+      "course_duration": "3 months",
+      "available_seats": "20",
+      "instructor": "Alice Williams",
+      "course_description": "Learn Node.js from scratch and build server-side applications."
     },
     {
       "id": "5",
       "course_name": "HTML/CSS",
       "course_fee": "5000",
-      "created_at": "2026-10-06"
+      "created_at": "2026-10-06",
+      "course_duration": "2 months",
+      "available_seats": "25",
+      "instructor": "Charlie Brown",
+      "course_description": "Learn HTML and CSS from scratch and build responsive web applications."
     }
   ],
   "enrollments": [

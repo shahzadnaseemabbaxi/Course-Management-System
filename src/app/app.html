@@ -1,21 +1,30 @@
-<app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
+<!-- ✅ Login ke baad: Navbar + Sidebar + Content -->
+@if (authService.isLoggedIn()) {
 
-<div class="app-body">
+  <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
 
-  <!-- ✅ Overlay — sirf mobile pe jab expanded ho -->
-  @if (isMobile() && sidebarExpanded()) {
-    <div class="sidebar-overlay" (click)="closeSidebar()"></div>
-  }
+  <div class="app-body">
 
-  <div class="sidebar-wrapper" [class.expanded]="sidebarExpanded()">
-    <app-sidebar
-      [collapsed]="isCollapsed()"
-      (linkClicked)="closeSidebar()">
-    </app-sidebar>
+    @if (isMobile() && sidebarExpanded()) {
+      <div class="sidebar-overlay" (click)="closeSidebar()"></div>
+    }
+
+    <div class="sidebar-wrapper" [class.expanded]="sidebarExpanded()">
+      <app-sidebar
+        [collapsed]="isCollapsed()"
+        (linkClicked)="closeSidebar()">
+      </app-sidebar>
+    </div>
+
+    <main class="main-content" [class.dark]="themeService.isDarkMode()">
+      <router-outlet></router-outlet>
+    </main>
+
   </div>
 
-  <main class="main-content" [class.dark]="themeService.isDarkMode()">
-    <router-outlet></router-outlet>
-  </main>
+}
 
-</div>
+<!-- ✅ Login page: sirf content -->
+@if (!authService.isLoggedIn()) {
+  <router-outlet></router-outlet>
+}

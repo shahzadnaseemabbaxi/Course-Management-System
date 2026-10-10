@@ -1,0 +1,67 @@
+<div class="login-page">
+
+  <div class="login-card">
+
+    <!-- Back Button -->
+    <a routerLink="/login" class="back-btn">← Back</a>
+
+    <!-- Logo -->
+    <div class="logo-section">
+      <div class="logo-icon">👤</div>
+      <h1>Admin Login</h1>
+      <p>Enter your credentials to continue</p>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+
+      <!-- Username -->
+      <div class="form-group">
+        <label>Username</label>
+        <input
+          type="text"
+          placeholder="Enter username"
+          formControlName="username"
+          [class.error]="isInvalid('username')"
+        />
+        @if (isInvalid('username')) {
+          <span class="error-msg">⚠ Username is required</span>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          placeholder="Enter password"
+          formControlName="password"
+          [class.error]="isInvalid('password')"
+        />
+        @if (isInvalid('password')) {
+          <span class="error-msg">⚠ Password is required</span>
+        }
+      </div>
+
+      <!-- Error Message -->
+      @if (errorMessage()) {
+        <div class="error-box">{{ errorMessage() }}</div>
+      }
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn" [disabled]="loading()">
+        {{ loading() ? 'Logging in...' : 'Login' }}
+      </button>
+
+    </form>
+
+    <!-- Demo Credentials -->
+    <div class="demo-creds">
+      <p><strong>Demo Credentials:</strong></p>
+      <p>Username: <code>admin</code></p>
+      <p>Password: <code>admin123</code></p>
+    </div>
+
+  </div>
+
+</div>
