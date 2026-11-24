@@ -1,0 +1,36 @@
+<div class="student-courses" [class.dark]="themeService.isDarkMode()">
+  
+  <div class="page-header">
+    <h2>My Enrolled Courses</h2>
+    <p>Track your learning journey and course details.</p>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading">Loading courses...</div>
+  } @else {
+    <div class="courses-grid">
+      @for (course of myEnrollments(); track course.id) {
+        <div class="course-card">
+          <div class="course-header">
+            <h3>{{ course.course_name }}</h3>
+            <span class="status-badge" [class.active]="course.status === 'Active'">
+              {{ course.status }}
+            </span>
+          </div>
+          
+          <div class="course-details">
+            <p><strong>Enrolled On:</strong> {{ course.enroll_date }}</p>
+            <p><strong>Course Fee:</strong> Rs {{ course.course_fee }}</p>
+          </div>
+        </div>
+      } @empty {
+        <div class="empty-state">
+          <div class="icon">📚</div>
+          <h3>No Courses Yet</h3>
+          <p>You haven't enrolled in any courses.</p>
+        </div>
+      }
+    </div>
+  }
+
+</div>

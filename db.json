@@ -10,60 +10,82 @@
       "student_id": null
     },
     {
-      "id": "2",
-      "username": "mahaz",
-      "password": "mahaz123",
+      "id": "4",
+      "username": "alikhan",
+      "roll_number": "F24-582",
+      "password": "Ali&202641do",
       "role": "student",
-      "name": "Mahaz Naseem Abbasi",
-      "email": "abbasimahaz562@gmail.com",
-      "student_id": "1"
+      "name": "Ali Khan",
+      "email": "alikhan@gmail.com",
+      "student_id": "4"
     },
     {
-      "id": "3",
-      "username": "ammad",
-      "password": "ammad123",
+      "id": "gZ6zQGheKLk",
+      "username": "isaammad",
+      "roll_number": "F24-633",
+      "password": "Isa$202684pp",
       "role": "student",
-      "name": "Ammad Naseem Abbasi",
-      "email": "abbasiammad562@gmail.com",
-      "student_id": "2"
+      "name": "Isa Ammad",
+      "email": "isaabbasi2gmail.com",
+      "student_id": "lwt_9KH3a9w"
+    },
+    {
+      "id": "42lR0y1C0Yg",
+      "username": "sahilammad",
+      "roll_number": "F24-517",
+      "password": "Sahil$202668hs",
+      "role": "student",
+      "name": "sahil ammad",
+      "email": "sahil@gmail.com",
+      "student_id": "PTzZXoDowrI"
+    },
+    {
+      "id": "HMsTDpPsyKg",
+      "username": "shahzadnaseem",
+      "roll_number": "F24-599",
+      "password": "Shahzad@2026",
+      "role": "student",
+      "name": "Shahzad Naseem Abbasi",
+      "email": "shahzadnaseemabbasi@gmail.com",
+      "student_id": "Rs3Si2VWZjw"
     }
   ],
   "students": [
     {
-      "name": "Mahaz Naseem Abbasi",
-      "father_name": "Muhammad Naseem",
-      "email": "abbasimahaz562@gmail.com",
-      "phone": "+92 3480526933",
-      "address": "Abbottabad",
-      "department": "Computer Science",
-      "id": "1"
+      "name": "Ali Khan",
+      "father_name": "Khan Jadoon",
+      "email": "Alikhan@gmail.com",
+      "phone": "+92 3288653097",
+      "address": "Small Industry Road Mandian Abbottabad",
+      "department": "Cyber Security",
+      "id": "4"
     },
     {
-      "name": "Ammad Naseem Abbasi",
-      "father_name": "Muhammad Naseem",
-      "email": "abbasiammad562@gmail.com",
-      "phone": "+92 3411923376",
-      "address": "Abbottabad",
+      "name": "Isa Ammad",
+      "father_name": "M Ammad",
+      "email": "isaabbasi2gmail.com",
+      "phone": "+92 3288653097",
+      "address": "Small Industry Road Mandian Abbottabad",
       "department": "Artificial Intelligence",
-      "id": "2"
+      "id": "lwt_9KH3a9w"
+    },
+    {
+      "name": "sahil ammad",
+      "father_name": "M ammad",
+      "email": "sahil@gmail.com",
+      "phone": "+92 3288653097",
+      "address": "Small Industry Road Mandian Abbottabad",
+      "department": "Artificial Intelligence",
+      "id": "PTzZXoDowrI"
     },
     {
       "name": "Shahzad Naseem Abbasi",
-      "father_name": "Muhammad Naseem",
+      "father_name": "M Naseem",
       "email": "shahzadnaseemabbasi@gmail.com",
       "phone": "+92 3288653097",
-      "address": "Abbottabad",
+      "address": "Small Industry Road Mandian Abbottabad",
       "department": "Computer Science",
-      "id": "3"
-    },
-    {
-      "name": "Ali Khan",
-      "father_name": "Ahmed Khan",
-      "email": "ali@gmail.com",
-      "phone": "+92 3001234567",
-      "address": "Islamabad",
-      "department": "Software Engineering",
-      "id": "4"
+      "id": "Rs3Si2VWZjw"
     }
   ],
   "courses": [
@@ -120,50 +142,91 @@
   ],
   "enrollments": [
     {
-      "id": "1",
-      "student_name": "Mahaz",
-      "course_name": "Angular",
-      "course_fee": "10000",
-      "enroll_date": "2026-10-05",
-      "status": "Active"
-    },
-    {
-      "id": "2",
-      "student_name": "Ammad",
+      "id": "4",
+      "student_id": "4",
+      "username": "alikhan",
+      "student_name": "Ali Khan",
       "course_name": "React",
       "course_fee": "12000",
-      "enroll_date": "2026-09-20",
+      "enroll_date": "2026-11-24",
       "status": "Active"
     },
     {
-      "id": "3",
-      "student_name": "Shahzad",
+      "student_id": "lwt_9KH3a9w",
+      "student_name": "Isa Ammad",
+      "course_id": "1",
+      "course_name": "Angular",
+      "course_fee": "10000",
+      "enroll_date": "2026-11-24",
+      "status": "Active",
+      "id": "-ZmbzfN2toQ"
+    },
+    {
+      "student_id": "PTzZXoDowrI",
+      "student_name": "sahil ammad",
+      "course_id": "3",
       "course_name": "JavaScript",
       "course_fee": "4000",
-      "enroll_date": "2026-10-01",
-      "status": "inactive"
+      "enroll_date": "2026-11-24",
+      "status": "Active",
+      "id": "_grCif6U4QY"
+    },
+    {
+      "student_id": "Rs3Si2VWZjw",
+      "student_name": "Shahzad Naseem Abbasi",
+      "course_id": "1",
+      "course_name": "Angular",
+      "course_fee": "10000",
+      "enroll_date": "2026-11-24",
+      "status": "Active",
+      "id": "UqSLixDCBrY"
     }
   ],
   "payments": [
     {
-      "enrollment_id": "1",
-      "student_name": "Mahaz",
-      "course_name": "Angular",
-      "total_fee": "10000",
-      "paid_amount": 5000,
-      "payment_method": "Cash",
-      "payment_date": "2026-10-09",
-      "id": "usaAVZPZslg"
-    },
-    {
-      "enrollment_id": "2",
-      "student_name": "Ammad",
+      "enrollment_id": "4",
+      "student_id": "4",
+      "username": "alikhan",
+      "student_name": "Ali Khan",
       "course_name": "React",
       "total_fee": "12000",
-      "paid_amount": 12000,
-      "payment_method": "Cash",
-      "payment_date": "2026-10-09",
-      "id": "4z1-TtFEh6E"
+      "paid_amount": 7000,
+      "payment_method": "Bank Transfer",
+      "payment_date": "2026-11-24",
+      "id": "_8vkq3Aaa9E"
+    },
+    {
+      "enrollment_id": "-ZmbzfN2toQ",
+      "student_id": "lwt_9KH3a9w",
+      "student_name": "Isa Ammad",
+      "course_name": "Angular",
+      "total_fee": "10000",
+      "paid_amount": 8500,
+      "payment_method": "Online",
+      "payment_date": "2026-11-24",
+      "id": "i1xvhtAxKzA"
+    },
+    {
+      "enrollment_id": "_grCif6U4QY",
+      "student_id": "PTzZXoDowrI",
+      "student_name": "sahil ammad",
+      "course_name": "JavaScript",
+      "total_fee": "4000",
+      "paid_amount": 3500,
+      "payment_method": "Cheque",
+      "payment_date": "2026-11-24",
+      "id": "vQapJpoHMbg"
+    },
+    {
+      "enrollment_id": "UqSLixDCBrY",
+      "student_id": "Rs3Si2VWZjw",
+      "student_name": "Shahzad Naseem Abbasi",
+      "course_name": "Angular",
+      "total_fee": "10000",
+      "paid_amount": 9999,
+      "payment_method": "Bank Transfer",
+      "payment_date": "2026-11-24",
+      "id": "lEWDlVQ2DSg"
     }
   ],
   "settings": {

@@ -22,25 +22,22 @@ export class Fees implements OnInit {
   enrollments = signal<any[]>([]);
   selectedPaymentId = signal<number | null>(null);
 
-  // Toast
   showToast = signal<boolean>(false);
   toastMessage = signal<string>('');
   toastType = signal<'error' | 'success'>('error');
 
-  // Enrollment Dropdown
   showEnrollDropdown = signal<boolean>(false);
   selectedEnrollLabel = signal<string>('');
 
-  // Auto calculation signals
   totalFee = signal<number>(0);
   previouslyPaid = signal<number>(0);
   remainingBalance = signal<number>(0);
 
-  // Payment methods
   paymentMethods = ['Cash', 'Bank Transfer', 'Online', 'Cheque'];
 
   form = this.fb.group({
     enrollment_id:  ['', Validators.required],
+    student_id:     [''], // ✅ Add kiya
     student_name:   [''],
     course_name:    [''],
     total_fee:      ['', Validators.required],
@@ -70,55 +67,34 @@ export class Fees implements OnInit {
     this.http.get<any[]>('http://localhost:3000/enrollments')
       .subscribe(data => this.enrollments.set(data));
   }
+
   onEnrollmentChange(event: Event) {
-  // Select se selected ID lena
-  const select = event.target as HTMLSelectElement;
+    const select = event.target as HTMLSelectElement;
+    const enrollmentId = select.value;
 
-  // ID ko string mein lena
-  const enrollmentId = select.value;
+    if (!enrollmentId) return;
 
-  // Agar kuch select nahi kiya
-  if (!enrollmentId) {
-    return;
+    const enrollment = this.enrollments().find(e => String(e.id) === enrollmentId);
+    if (!enrollment) return;
+
+    this.form.patchValue({
+      enrollment_id: enrollment.id,
+      student_id: enrollment.student_id, // ✅ Yahhan student_id set kiya
+      student_name: enrollment.student_name || '',
+      course_name: enrollment.course_name || '',
+      total_fee: enrollment.course_fee
+    });
+
+    const total = Number(enrollment.course_fee) || 0;
+    this.totalFee.set(total);
+
+    const paid = this.payments()
+      .filter(p => String(p.enrollment_id) === String(enrollment.id))
+      .reduce((sum, p) => sum + Number(p.paid_amount || 0), 0);
+
+    this.previouslyPaid.set(paid);
+    this.remainingBalance.set(total - paid);
   }
-
-  // Selected enrollment find karna
-  const enrollment = this.enrollments()
-    .find(e => String(e.id) === enrollmentId);
-
-  // Agar enrollment nahi mila
-  if (!enrollment) {
-    return;
-  }
-
-  // Form mein enrollment ki information set karna
-  this.form.patchValue({
-    enrollment_id: enrollment.id,
-    student_name: enrollment.student_name || '',
-    course_name: enrollment.course_name || '',
-    total_fee: enrollment.course_fee
-  });
-
-  // Total fee set karna
-  const total = Number(enrollment.course_fee) || 0;
-  this.totalFee.set(total);
-
-  // Pehle kitni payment hui hai wo calculate karna
-  const paid = this.payments()
-    .filter(p =>
-      String(p.enrollment_id) === String(enrollment.id)
-    )
-    .reduce(
-      (sum, p) => sum + Number(p.paid_amount || 0),
-      0
-    );
-
-  // Previously paid set
-  this.previouslyPaid.set(paid);
-
-  // Remaining balance calculate
-  this.remainingBalance.set(total - paid);
-}
 
   toggleEnrollDropdown() {
     this.showEnrollDropdown.update(v => !v);
@@ -129,6 +105,7 @@ export class Fees implements OnInit {
 
     this.form.patchValue({
       enrollment_id: e.id,
+      student_id: e.student_id, // ✅ Yahhan student_id set kiya
       student_name: e.student_name || '',
       course_name: e.course_name || '',
       total_fee: e.course_fee
@@ -182,15 +159,21 @@ export class Fees implements OnInit {
     }
 
     const url = 'http://localhost:3000/payments';
+    
+    // ✅ Data save karte waqt student_id bhi jayegi
+    const formData = {
+      ...this.form.value,
+      student_id: this.form.value.student_id
+    };
 
     if (this.selectedPaymentId() === null) {
-      this.http.post(url, this.form.value).subscribe(() => {
+      this.http.post(url, formData).subscribe(() => {
         this.showToastMsg('✅ Payment submitted successfully!', 'success');
         this.closeModal();
         this.loadPayments();
       });
     } else {
-      this.http.put(`${url}/${this.selectedPaymentId()}`, this.form.value)
+      this.http.put(`${url}/${this.selectedPaymentId()}`, formData)
         .subscribe(() => {
           this.showToastMsg('✅ Payment updated!', 'success');
           this.closeModal();
@@ -203,6 +186,7 @@ export class Fees implements OnInit {
     this.selectedPaymentId.set(p.id);
     this.form.setValue({
       enrollment_id: p.enrollment_id,
+      student_id: p.student_id || '', // ✅ Add kiya
       student_name: p.student_name || '',
       course_name: p.course_name || '',
       total_fee: p.total_fee,

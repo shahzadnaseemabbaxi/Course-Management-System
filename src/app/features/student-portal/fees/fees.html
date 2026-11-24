@@ -1,0 +1,44 @@
+<div class="student-fees" [class.dark]="themeService.isDarkMode()">
+  
+  <div class="page-header">
+    <h2>My Fee History</h2>
+    <p>Check your past payments and pending dues.</p>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading">Loading fee records...</div>
+  } @else {
+    <div class="table-container">
+      <table class="fees-table">
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Total Fee</th>
+            <th>Paid Amount</th>
+            <th>Remaining Fee</th> <!-- ✅ Naya Column -->
+            <th>Payment Date</th>
+            <th>Method</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (payment of myPayments(); track payment.id) {
+            <tr>
+              <td>{{ payment.course_name }}</td>
+              <td>Rs {{ payment.total_fee }}</td>
+              <td class="paid-text">Rs {{ payment.paid_amount }}</td>
+              <!-- ✅ Remaining Fee Calculate karke show ki -->
+              <td class="pending-text">Rs {{ payment.total_fee - payment.paid_amount }}</td>
+              <td>{{ payment.payment_date }}</td>
+              <td>{{ payment.payment_method }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="empty-row">No payment records found.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+</div>

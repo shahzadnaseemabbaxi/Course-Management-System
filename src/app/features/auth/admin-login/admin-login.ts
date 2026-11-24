@@ -1,33 +1,44 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 
 @Component({
-  selector: 'app-admin-login',
+  selector: 'app-admin-login', // ✅ Selector theek kiya
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './admin-login.html',
-  styleUrl: './admin-login.css'
+  templateUrl: './admin-login.html', // ✅ Sahi HTML file
+  styleUrl: './admin-login.css'      // ✅ Sahi CSS file
 })
-export class AdminLoginComponent {
+export class AdminLoginComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  // ✅ Signals
   loading = signal<boolean>(false);
   errorMessage = signal<string>('');
+  showPassword = signal<boolean>(false); 
 
-  // ✅ Login form
   loginForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
   });
 
-  // ✅ Submit
+  ngOnInit() {
+    this.loginForm.reset();
+    
+    // ✅ Browser auto-fill rokne ke liye
+    setTimeout(() => {
+      this.loginForm.reset();
+    }, 100);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword.update(v => !v);
+  }
+
   onSubmit() {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
@@ -39,14 +50,15 @@ export class AdminLoginComponent {
 
     const { username, password } = this.loginForm.value;
 
+    // ✅ Role 'admin' kiya
     this.authService.login(username!, password!, 'admin').subscribe({
       next: (users) => {
         this.loading.set(false);
 
         if (users && users.length > 0) {
-          // ✅ Success
           console.log('✅ Admin logged in');
-          this.router.navigate(['/dashboard']);
+          // ✅ Admin dashboard par bheja
+          this.router.navigate(['/dashboard']); 
         } else {
           this.errorMessage.set('❌ Invalid username or password');
         }

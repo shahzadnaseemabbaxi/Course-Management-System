@@ -127,43 +127,68 @@ tbody tr:last-child td {
   color: #ffffff;
 }
 
-/* Action Buttons */
-.actions {
+/* ✅ NAYA: Action Buttons Container */
+.action-buttons {
   display: flex;
-  gap: 6px;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.edit-btn {
-  background: #465fff;
-  color: #fff;
-  border: none;
-  padding: 7px 14px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
+/* ✅ NAYA: Common Button Style */
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: transparent;
   cursor: pointer;
-  white-space: nowrap;
+  transition: all 0.2s ease-in-out;
+  padding: 0;
 }
 
-.edit-btn:hover { background: #3548d4; }
-
-.delete-btn {
-  background: #ef4444;
-  color: #fff;
-  border: none;
-  padding: 7px 14px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
+/* ✅ Key Button (Purple) */
+.btn-key {
+  color: #8b5cf6;
+  background-color: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.2);
+}
+.btn-key:hover {
+  background-color: #8b5cf6;
+  color: white;
 }
 
-.delete-btn:hover { background: #dc2626; }
+/* ✅ Edit Button (Blue) */
+.btn-edit {
+  color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+.btn-edit:hover {
+  background-color: #3b82f6;
+  color: white;
+}
 
-/* Empty */
+/* ✅ Delete Button (Red) */
+.btn-delete {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+.btn-delete:hover {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* ✅ Dark Mode Adjustments */
+.students-page.dark .btn-key { color: #a78bfa; }
+.students-page.dark .btn-edit { color: #60a5fa; }
+.students-page.dark .btn-delete { color: #f87171; }
+
+/* Empty State */
 .empty-state { padding: 60px 20px !important; }
 .empty-content { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .empty-icon { font-size: 48px; opacity: 0.6; }
@@ -324,282 +349,7 @@ tbody tr:last-child td {
 .dept-item:hover { background: #f3f4f6; color: #10b981; }
 .students-page.dark .dept-item:hover { background: #2a2a3a; color: #10b981; }
 
-
 /* =========================
-   RESPONSIVE — 1024px (Tablet)
-========================= */
-@media (max-width: 1024px) {
-  .students-page { padding: 16px; }
-
-  .page-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .page-header h2 { font-size: 20px; }
-
-  .add-new-btn { width: 100%; }
-
-  th, td {
-    padding: 12px 6px;
-    font-size: 12px;
-  }
-
-  th {
-    font-size: 10px;
-    letter-spacing: 0;
-  }
-
-  .edit-btn, .delete-btn {
-    padding: 5px 10px;
-    font-size: 11px;
-  }
-}
-
-
-/* =========================
-   RESPONSIVE — 768px (Tablet Small)
-========================= */
-@media (max-width: 768px) {
-  .modal-form { grid-template-columns: 1fr; }
-
-  /* ✅ Sirf important columns dikhao */
-  th:nth-child(3),
-  td:nth-child(3) {
-    /* Email column */
-    font-size: 11px;
-  }
-}
-
-
-/* =========================
-   RESPONSIVE — 500px (Mobile Card View)
-========================= */
-@media (max-width: 500px) {
-
-  .students-page { padding: 12px; }
-
-  .page-header h2 { font-size: 18px; }
-
-  /* ✅ Table wrapper reset */
-  .table-wrapper {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    overflow: visible;
-  }
-
-  /* ✅ Table → block */
-  table {
-    display: block;
-    width: 100%;
-    table-layout: auto;
-  }
-
-  thead {
-    display: none;
-  }
-
-  tbody {
-    display: block;
-  }
-
-  /* ✅ Each row = Card */
-  tbody tr {
-    display: block;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
-
-  .students-page.dark tbody tr {
-    background: #14141f;
-    border-color: #2a2a3a;
-  }
-
-  /* ✅ Each cell = Row with label */
-  td {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 8px 0;
-    border-bottom: 1px solid #f3f4f6;
-    font-size: 13px;
-    text-align: right;
-    gap: 12px;
-    word-break: break-word;
-    overflow-wrap: anywhere;
-    min-width: 0;
-  }
-
-  .students-page.dark td {
-    border-bottom-color: #1f1f2e;
-  }
-
-  td:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  /* ✅ Label */
-  td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    font-size: 11px;
-    color: #6b7280;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-align: left;
-    flex-shrink: 0;
-    min-width: 75px;
-    max-width: 90px;
-  }
-
-  .students-page.dark td::before {
-    color: #9ca3af;
-  }
-
-  .name-cell {
-    font-weight: 700;
-    font-size: 15px;
-  }
-
-  /* Actions */
-  .actions {
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 8px;
-    width: 100%;
-  }
-
-  .edit-btn, .delete-btn {
-    padding: 6px 14px;
-    font-size: 12px;
-    flex: 1;
-    max-width: 100px;
-  }
-
-  /* Empty as card */
-  .empty-state {
-    display: block !important;
-    padding: 40px 16px !important;
-    border-radius: 12px;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-  }
-
-  .students-page.dark .empty-state {
-    background: #14141f;
-    border-color: #2a2a3a;
-  }
-
-  .empty-state::before { display: none; }
-
-  .empty-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-  }
-
-  .empty-icon { font-size: 40px; }
-  .empty-content h3 { font-size: 16px; }
-  .empty-content p { font-size: 13px; margin-bottom: 12px; }
-
-  .add-first-btn {
-    padding: 10px 20px;
-    font-size: 13px;
-    width: 100%;
-  }
-
-  /* Modal */
-  .modal-box {
-    max-height: 95vh;
-    border-radius: 12px;
-  }
-
-  .modal-header { padding: 16px; }
-  .modal-header h3 { font-size: 16px; }
-  .modal-form { padding: 16px; gap: 14px; }
-
-  .save-btn, .cancel-btn {
-    flex: 1;
-    padding: 12px;
-    font-size: 13px;
-  }
-
-  /* Toast bottom */
-  .toast-popup {
-    top: auto;
-    bottom: 20px;
-    right: 12px;
-    left: 12px;
-    min-width: auto;
-    max-width: none;
-  }
-}
-
-
-/* =========================
-   RESPONSIVE — 380px (Very Small)
-========================= */
-@media (max-width: 380px) {
-
-  .students-page { padding: 8px; }
-
-  .page-header h2 { font-size: 16px; }
-
-  .add-new-btn {
-    padding: 8px 14px;
-    font-size: 12px;
-  }
-
-  tbody tr {
-    padding: 12px 10px;
-    border-radius: 10px;
-  }
-
-  td {
-    font-size: 12px;
-    padding: 6px 0;
-    gap: 8px;
-  }
-
-  td::before {
-    font-size: 10px;
-    min-width: 65px;
-    max-width: 75px;
-  }
-
-  .name-cell { font-size: 13px; }
-
-  .edit-btn, .delete-btn {
-    padding: 5px 10px;
-    font-size: 11px;
-  }
-
-  .modal-form { padding: 12px; gap: 12px; }
-
-  .modal-form input {
-    padding: 8px 12px;
-    font-size: 13px;
-  }
-
-  .empty-icon { font-size: 36px; }
-  .empty-content h3 { font-size: 14px; }
-  .empty-content p { font-size: 12px; }
-
-  .toast-popup {
-    padding: 10px 12px;
-    font-size: 12px;
-  }
-}
-  /* =========================
    Phone with Country Code
 ========================= */
 .phone-input-group {
@@ -608,7 +358,6 @@ tbody tr:last-child td {
   align-items: stretch;
 }
 
-/* Country Dropdown */
 .country-dropdown {
   position: relative;
   flex-shrink: 0;
@@ -643,7 +392,6 @@ tbody tr:last-child td {
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
-/* ✅ Flag Image */
 .country-flag-img {
   width: 24px;
   height: 16px;
@@ -668,7 +416,6 @@ tbody tr:last-child td {
   transform: rotate(180deg);
 }
 
-/* Country Menu */
 .country-menu {
   position: absolute;
   top: calc(100% + 6px);
@@ -700,9 +447,7 @@ tbody tr:last-child td {
   transition: 0.15s;
 }
 
-.students-page.dark .country-item {
-  color: #e4e4e7;
-}
+.students-page.dark .country-item { color: #e4e4e7; }
 
 .country-item:hover {
   background: #f3f4f6;
@@ -725,11 +470,8 @@ tbody tr:last-child td {
   font-size: 13px;
 }
 
-.students-page.dark .country-item .country-code {
-  color: #9ca3af;
-}
+.students-page.dark .country-item .country-code { color: #9ca3af; }
 
-/* Phone Input */
 .phone-input {
   flex: 1;
   min-width: 0;
@@ -758,25 +500,92 @@ tbody tr:last-child td {
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
 }
 
-/* ✅ Mobile — 500px */
+/* =========================
+   RESPONSIVE — 1024px (Tablet)
+========================= */
+@media (max-width: 1024px) {
+  .students-page { padding: 16px; }
+  .page-header { flex-direction: column; align-items: stretch; gap: 12px; }
+  .page-header h2 { font-size: 20px; }
+  .add-new-btn { width: 100%; }
+  th, td { padding: 12px 6px; font-size: 12px; }
+  th { font-size: 10px; letter-spacing: 0; }
+}
+
+/* =========================
+   RESPONSIVE — 768px (Tablet Small)
+========================= */
+@media (max-width: 768px) {
+  .modal-form { grid-template-columns: 1fr; }
+  th:nth-child(3), td:nth-child(3) { font-size: 11px; }
+}
+
+/* =========================
+   RESPONSIVE — 500px (Mobile Card View)
+========================= */
 @media (max-width: 500px) {
-  .phone-input-group {
-    flex-direction: column;
-    gap: 8px;
+  .students-page { padding: 12px; }
+  .page-header h2 { font-size: 18px; }
+  .table-wrapper { background: transparent; border: none; box-shadow: none; overflow: visible; }
+  table { display: block; width: 100%; table-layout: auto; }
+  thead { display: none; }
+  tbody { display: block; }
+  tbody tr {
+    display: block; background: #ffffff; border: 1px solid #e5e7eb;
+    border-radius: 12px; padding: 14px; margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
+  .students-page.dark tbody tr { background: #14141f; border-color: #2a2a3a; }
+  td {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px;
+    text-align: right; gap: 12px; word-break: break-word; overflow-wrap: anywhere; min-width: 0;
+  }
+  .students-page.dark td { border-bottom-color: #1f1f2e; }
+  td:last-child { border-bottom: none; padding-bottom: 0; }
+  td::before {
+    content: attr(data-label); font-weight: 600; font-size: 11px;
+    color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px;
+    text-align: left; flex-shrink: 0; min-width: 75px; max-width: 90px;
+  }
+  .students-page.dark td::before { color: #9ca3af; }
+  .name-cell { font-weight: 700; font-size: 15px; }
+  .action-buttons { flex-direction: row; justify-content: flex-end; gap: 8px; width: 100%; }
+  .empty-state { display: block !important; padding: 40px 16px !important; border-radius: 12px; background: #ffffff; border: 1px solid #e5e7eb; }
+  .students-page.dark .empty-state { background: #14141f; border-color: #2a2a3a; }
+  .empty-state::before { display: none; }
+  .empty-content { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+  .empty-icon { font-size: 40px; }
+  .empty-content h3 { font-size: 16px; }
+  .empty-content p { font-size: 13px; margin-bottom: 12px; }
+  .add-first-btn { padding: 10px 20px; font-size: 13px; width: 100%; }
+  .modal-box { max-height: 95vh; border-radius: 12px; }
+  .modal-header { padding: 16px; }
+  .modal-header h3 { font-size: 16px; }
+  .modal-form { padding: 16px; gap: 14px; }
+  .save-btn, .cancel-btn { flex: 1; padding: 12px; font-size: 13px; }
+  .toast-popup { top: auto; bottom: 20px; right: 12px; left: 12px; min-width: auto; max-width: none; }
+  .phone-input-group { flex-direction: column; gap: 8px; }
+  .country-dropdown { width: 100%; }
+  .country-btn { width: 100%; justify-content: space-between; padding: 10px 14px; }
+  .country-menu { width: 100%; min-width: auto; }
+}
 
-  .country-dropdown {
-    width: 100%;
-  }
-
-  .country-btn {
-    width: 100%;
-    justify-content: space-between;
-    padding: 10px 14px;
-  }
-
-  .country-menu {
-    width: 100%;
-    min-width: auto;
-  }
+/* =========================
+   RESPONSIVE — 380px (Very Small)
+========================= */
+@media (max-width: 380px) {
+  .students-page { padding: 8px; }
+  .page-header h2 { font-size: 16px; }
+  .add-new-btn { padding: 8px 14px; font-size: 12px; }
+  tbody tr { padding: 12px 10px; border-radius: 10px; }
+  td { font-size: 12px; padding: 6px 0; gap: 8px; }
+  td::before { font-size: 10px; min-width: 65px; max-width: 75px; }
+  .name-cell { font-size: 13px; }
+  .modal-form { padding: 12px; gap: 12px; }
+  .modal-form input { padding: 8px 12px; font-size: 13px; }
+  .empty-icon { font-size: 36px; }
+  .empty-content h3 { font-size: 14px; }
+  .empty-content p { font-size: 12px; }
+  .toast-popup { padding: 10px 12px; font-size: 12px; }
 }

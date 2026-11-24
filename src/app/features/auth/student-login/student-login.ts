@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -11,7 +11,7 @@ import { AuthService } from '../../../core/services/auth';
   templateUrl: './student-login.html',
   styleUrl: './student-login.css'
 })
-export class StudentLoginComponent {
+export class StudentLoginComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
@@ -19,11 +19,26 @@ export class StudentLoginComponent {
 
   loading = signal<boolean>(false);
   errorMessage = signal<string>('');
+  showPassword = signal<boolean>(false); 
 
   loginForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
   });
+
+  ngOnInit() {
+    // ✅ Pehle reset karein
+    this.loginForm.reset();
+    
+    // ✅ Agar browser auto-fill kare, to 100ms baad wapas reset kar dein
+    setTimeout(() => {
+      this.loginForm.reset();
+    }, 100);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword.update(v => !v);
+  }
 
   onSubmit() {
     if (this.loginForm.invalid) {
@@ -42,9 +57,9 @@ export class StudentLoginComponent {
 
         if (users && users.length > 0) {
           console.log('✅ Student logged in');
-          this.router.navigate(['/student/dashboard']);   // ⏭️ Kal banayenge
+          this.router.navigate(['/student/dashboard']);
         } else {
-          this.errorMessage.set('❌ Invalid roll number or password');
+          this.errorMessage.set('❌ Invalid roll number/username or password');
         }
       },
       error: (err) => {

@@ -23,12 +23,10 @@ export class Enrollment implements OnInit {
   courses = signal<any[]>([]);
   selectedEnrollmentId = signal<number | null>(null);
 
-  // Toast
   showToast = signal<boolean>(false);
   toastMessage = signal<string>('');
   toastType = signal<'error' | 'success'>('error');
 
-  // Dropdowns
   showStudentDropdown = signal<boolean>(false);
   selectedStudentLabel = signal<string>('');
   showCourseDropdown = signal<boolean>(false);
@@ -66,49 +64,41 @@ export class Enrollment implements OnInit {
     this.http.get<any[]>('http://localhost:3000/students')
       .subscribe(data => this.students.set(data));
   }
-onStudentChange(event: Event) {
-  const select = event.target as HTMLSelectElement;
-  const studentId = select.value;    // ✅ Number() HATAO
 
-  console.log('🔵 Student ID:', studentId);
+  onStudentChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    const studentId = select.value;
 
-  const student = this.students().find(s => String(s.id) === studentId);
+    const student = this.students().find(s => String(s.id) === studentId);
 
-  if (student) {
-    this.form.patchValue({
-      student_id: student.id,
-      student_name: student.name
-    });
-    console.log('✅ Student set:', student.name);
-  } else {
-    console.log('❌ Student not found:', studentId);
+    if (student) {
+      this.form.patchValue({
+        student_id: student.id,
+        student_name: student.name
+      });
+    }
   }
-}
 
   loadCourses() {
     this.http.get<any[]>('http://localhost:3000/courses')
       .subscribe(data => this.courses.set(data));
   }
-onCourseChange(event: Event) {
-  const select = event.target as HTMLSelectElement;
-  const courseId = select.value;    // ✅ Number() HATAO
 
-  console.log('🔵 Course ID:', courseId);
-  console.log('🔵 Courses:', this.courses());
+  onCourseChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    const courseId = select.value;
 
-  const course = this.courses().find(c => String(c.id) === courseId);
+    const course = this.courses().find(c => String(c.id) === courseId);
 
-  if (course) {
-    this.form.patchValue({
-      course_id: course.id,
-      course_name: course.course_name,
-      course_fee: course.course_fee
-    });
-    console.log('✅ Fee set:', course.course_fee);
-  } else {
-    console.log('❌ Course not found:', courseId);
+    if (course) {
+      this.form.patchValue({
+        course_id: course.id,
+        course_name: course.course_name,
+        course_fee: course.course_fee
+      });
+    }
   }
-}
+
   toggleStudentDropdown() { this.showStudentDropdown.update(v => !v); }
   toggleCourseDropdown()  { this.showCourseDropdown.update(v => !v); }
 
@@ -159,14 +149,22 @@ onCourseChange(event: Event) {
 
     const url = 'http://localhost:3000/enrollments';
 
+    // ✅ Yahan student_id add kiya hai taake save ho sake
+    const formData = {
+      ...this.form.value,
+      student_id: this.form.value.student_id, 
+      student_name: this.form.value.student_name,
+      course_name: this.form.value.course_name
+    };
+
     if (this.selectedEnrollmentId() === null) {
-      this.http.post(url, this.form.value).subscribe(() => {
+      this.http.post(url, formData).subscribe(() => {
         this.showToastMsg('✅ Enrollment created!', 'success');
         this.closeModal();
         this.loadEnrollments();
       });
     } else {
-      this.http.put(`${url}/${this.selectedEnrollmentId()}`, this.form.value)
+      this.http.put(`${url}/${this.selectedEnrollmentId()}`, formData)
         .subscribe(() => {
           this.showToastMsg('✅ Enrollment updated!', 'success');
           this.closeModal();

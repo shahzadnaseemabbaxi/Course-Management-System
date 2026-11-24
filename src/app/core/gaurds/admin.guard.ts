@@ -6,8 +6,17 @@ export const adminGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
   const router = inject(Router);
 
-  if (auth.isLoggedIn() && auth.isAdmin()) return true;
+  // Yahan () lagana zaroori hai kyunke isLoggedIn signal hai
+  if (!auth.isLoggedIn()) {
+    router.navigate(['/login']);
+    return false;
+  }
 
+  if (auth.isAdmin()) {
+    return true;
+  }
+
+  // Agar student hai to uske dashboard par bhejein
   router.navigate(['/student/dashboard']);
   return false;
 };

@@ -1,10 +1,8 @@
-<!-- ✅ Login ke baad: Navbar + Sidebar + Content -->
 @if (authService.isLoggedIn()) {
-
+  
   <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
 
   <div class="app-body">
-
     @if (isMobile() && sidebarExpanded()) {
       <div class="sidebar-overlay" (click)="closeSidebar()"></div>
     }
@@ -19,12 +17,10 @@
     <main class="main-content" [class.dark]="themeService.isDarkMode()">
       <router-outlet></router-outlet>
     </main>
-
   </div>
 
-}
-
-<!-- ✅ Login page: sirf content -->
-@if (!authService.isLoggedIn()) {
+} @else {
+  
   <router-outlet></router-outlet>
+
 }

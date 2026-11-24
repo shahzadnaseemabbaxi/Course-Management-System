@@ -1,0 +1,110 @@
+.student-dashboard {
+  padding: 2rem;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.student-dashboard.dark {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+.page-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.dark .page-header p {
+  color: #94a3b8;
+}
+
+/* Grid layout for cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  max-width: 1200px;
+}
+
+/* Card Styling */
+.stat-card {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dark .stat-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+/* Icon Styling */
+.card-icon {
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Icon Background Colors */
+.bg-blue { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.bg-purple { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+.bg-green { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+.bg-orange { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+
+/* Text Styling */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.dark .card-label {
+  color: #94a3b8;
+}
+
+.card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.dark .card-value {
+  color: white;
+}
+
+/* Value Colors */
+.text-green { color: #22c55e !important; }
+.text-orange { color: #f97316 !important; }

@@ -1,0 +1,46 @@
+<div class="student-dashboard" [class.dark]="themeService.isDarkMode()">
+  
+  <div class="page-header">
+    <h2>Welcome back, {{ studentName() }}! 👋</h2>
+    <p>Here is a quick overview of your courses and fees.</p>
+  </div>
+
+  <div class="stats-grid">
+    <!-- Card 1: Enrolled Courses -->
+    <div class="stat-card">
+      <div class="card-icon bg-blue">📚</div>
+      <div class="card-info">
+        <span class="card-label">Enrolled Courses</span>
+        <h3 class="card-value">{{ myCoursesCount() }}</h3>
+      </div>
+    </div>
+
+    <!-- Card 2: Total Fee -->
+    <div class="stat-card">
+      <div class="card-icon bg-purple">💵</div>
+      <div class="card-info">
+        <span class="card-label">Total Fee</span>
+        <h3 class="card-value">Rs {{ totalFee() }}</h3>
+      </div>
+    </div>
+
+    <!-- Card 3: Paid Fee -->
+    <div class="stat-card">
+      <div class="card-icon bg-green">✅</div>
+      <div class="card-info">
+        <span class="card-label">Paid Amount</span>
+        <h3 class="card-value text-green">Rs {{ paidFee() }}</h3>
+      </div>
+    </div>
+
+    <!-- Card 4: Pending Fee -->
+    <div class="stat-card">
+      <div class="card-icon bg-orange">⚠️</div>
+      <div class="card-info">
+        <span class="card-label">Pending Fee</span>
+        <h3 class="card-value text-orange">Rs {{ pendingFee() }}</h3>
+      </div>
+    </div>
+  </div>
+
+</div>

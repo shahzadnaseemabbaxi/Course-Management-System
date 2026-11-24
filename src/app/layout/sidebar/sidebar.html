@@ -13,7 +13,8 @@
   </div>
 
   <nav class="sidebar-nav">
-    @for (item of menuItems; track item.name) {
+    <!-- ✅ Yahan menuItems() signal call ho raha hai -->
+    @for (item of menuItems(); track item.name) {
       <a
         class="nav-item"
         [routerLink]="item.route"
